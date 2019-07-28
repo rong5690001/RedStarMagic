@@ -4,11 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ChajianActivity">
 
     <Button
         android:id="@+id/btnLaunchPluginActivity"
-        android:text="插件里启动插件Activity"
-        style="@style/BtnStyle"/>
+        style="@style/BtnStyle"
+        android:text="插件里启动插件Activity"/>
+
+    <Button
+        android:id="@+id/btnShowDialog"
+        style="@style/BtnStyle"
+        android:text="显示弹窗"/>
 
 </LinearLayout>

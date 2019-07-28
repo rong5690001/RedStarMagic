@@ -29,10 +29,15 @@ import android.text.TextUtils;
 import android.util.Pair;
 import android.view.LayoutInflater;
 
-import com.redstar.magic.pluginlib.container.HostActivityDelegator;
-import com.redstar.magic.pluginlib.container.MixResources;
+import com.redstar.magic.pluginlib.proxy.IProxyActivity;
+import com.redstar.magic.pluginlib.proxy.MixResources;
 
-
+/**
+ * 插件上下文：
+ * 1、负责加载资源
+ * 2、处理启动组件逻辑
+ * author:chen.huarong
+ */
 public class ShadowContext extends PluginDirContextThemeWrapper {
     IPluginComponentLauncher mPluginComponentLauncher;
     ClassLoader mPluginClassLoader;
@@ -43,7 +48,6 @@ public class ShadowContext extends PluginDirContextThemeWrapper {
     String mLibrarySearchPath;
     String mDexPath;
     protected String mPartKey;
-    private String mBusinessName;
     private String mPluginName;
 //    private ShadowRemoteViewCreatorProvider mRemoteViewCreatorProvider;
 
@@ -78,13 +82,6 @@ public class ShadowContext extends PluginDirContextThemeWrapper {
         mDexPath = dexPath;
     }
 
-    public void setBusinessName(String businessName) {
-        if (TextUtils.isEmpty(businessName)) {
-            businessName = null;
-        }
-        this.mBusinessName = businessName;
-    }
-
     public void setPluginPartKey(String partKey) {
         this.mPartKey = partKey;
     }
@@ -112,8 +109,8 @@ public class ShadowContext extends PluginDirContextThemeWrapper {
         if (mMixResources == null) {
             Context baseContext = getBaseContext();
             Resources hostResources;
-            if (baseContext instanceof HostActivityDelegator) {
-                hostResources = ((HostActivityDelegator) baseContext).superGetResources();
+            if (baseContext instanceof IProxyActivity) {
+                hostResources = ((IProxyActivity) baseContext).superGetResources();
             } else {
                 hostResources = baseContext.getResources();
             }
@@ -136,7 +133,7 @@ public class ShadowContext extends PluginDirContextThemeWrapper {
 //            }
 //            return mLayoutInflater;
 //        }
-        return super.getSystemService(name);
+        return getBaseContext().getSystemService(name);
     }
 
     @Override
@@ -212,10 +209,10 @@ public class ShadowContext extends PluginDirContextThemeWrapper {
 
     @Override
     String getSubDirName() {
-        if (mBusinessName == null) {
+        if (TextUtils.isEmpty(mPluginName)) {
             return null;
         } else {
-            return "ShadowPlugin_" + mBusinessName;
+            return "MagicPlugin_" + mPluginName;
         }
     }
 }

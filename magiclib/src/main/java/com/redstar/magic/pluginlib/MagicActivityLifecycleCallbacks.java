@@ -22,7 +22,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
 
-import com.redstar.magic.pluginlib.container.PluginContainerActivity;
+import com.redstar.magic.pluginlib.proxy.PluginProxyActivity;
 
 
 public interface MagicActivityLifecycleCallbacks {
@@ -52,8 +52,8 @@ public interface MagicActivityLifecycleCallbacks {
         }
 
         private MagicActivity getPluginActivity(Activity activity) {
-            if (activity instanceof PluginContainerActivity) {
-                return (MagicActivity) ((PluginContainerActivity) activity).getPluginActivity();
+            if (activity instanceof PluginProxyActivity) {
+                return (MagicActivity) ((PluginProxyActivity) activity).getPluginActivity();
             } else {
                 return null;
             }

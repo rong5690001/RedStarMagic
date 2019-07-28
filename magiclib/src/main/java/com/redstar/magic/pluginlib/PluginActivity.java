@@ -42,12 +42,12 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.accessibility.AccessibilityEvent;
 
-import com.redstar.magic.pluginlib.container.HostActivityDelegator;
+import com.redstar.magic.pluginlib.proxy.IProxyActivity;
 
 import java.util.List;
 
 public abstract class PluginActivity extends ShadowContext implements Window.Callback{
-    HostActivityDelegator mHostActivityDelegator;
+    IProxyActivity mHostActivityDelegator;
 
     MagicApplication mPluginApplication;
 
@@ -55,7 +55,7 @@ public abstract class PluginActivity extends ShadowContext implements Window.Cal
         attachBaseContext(context);
     }
 
-    public void setHostActivityDelegator(HostActivityDelegator delegator) {
+    public void setHostActivityDelegator(IProxyActivity delegator) {
         mHostActivityDelegator = delegator;
     }
 

@@ -16,8 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="com.redstar.magic.pluginlib.ProxyActivity"/>
-        <activity android:name="com.redstar.magic.pluginlib.container.PluginContainerActivity"/>
+        <activity android:name="com.redstar.magic.pluginlib.proxy.PluginProxyActivity"/>
     </application>
 
 </manifest>

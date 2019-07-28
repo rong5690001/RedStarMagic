@@ -16,7 +16,7 @@
  *
  */
 
-package com.redstar.magic.pluginlib.container;
+package com.redstar.magic.pluginlib.proxy;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -45,7 +45,7 @@ import android.view.WindowManager;
  * @author chen.huarong
  */
 public interface HostActivityDelegate {
-    void setDelegator(HostActivityDelegator delegator);
+    void setDelegator(IProxyActivity delegator);
 
     Object getPluginActivity();
 

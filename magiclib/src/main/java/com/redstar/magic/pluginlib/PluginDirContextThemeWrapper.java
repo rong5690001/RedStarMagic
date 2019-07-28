@@ -23,7 +23,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v4.app.FragmentActivity;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -33,7 +32,7 @@ import java.io.FileOutputStream;
 /**
  * 将Context上所有get*Dir方法都放到原实现的子目录中
  */
-abstract class PluginDirContextThemeWrapper extends FragmentActivity {
+abstract class PluginDirContextThemeWrapper extends Activity {
 
     private final Object mSync = new Object();
 
@@ -45,6 +44,7 @@ abstract class PluginDirContextThemeWrapper extends FragmentActivity {
 
     /**
      * 插件目录名称，一般是插件名字
+     *
      * @return
      */
     abstract String getSubDirName();

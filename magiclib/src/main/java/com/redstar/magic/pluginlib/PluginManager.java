@@ -8,6 +8,7 @@ import android.content.res.Resources;
 import android.text.TextUtils;
 import android.widget.Toast;
 
+import com.redstar.magic.pluginlib.tools.Logger;
 import com.redstar.magic.pluginlib.utils.FileUtils;
 
 import java.io.File;

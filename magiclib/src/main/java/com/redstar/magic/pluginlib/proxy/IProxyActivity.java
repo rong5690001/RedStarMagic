@@ -16,7 +16,7 @@
  *
  */
 
-package com.redstar.magic.pluginlib.container;
+package com.redstar.magic.pluginlib.proxy;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -99,8 +99,8 @@ import java.util.List;
  * <p>
  * author:chen.huarong
  */
-public interface HostActivityDelegator {
-    HostActivity getHostActivity();
+public interface IProxyActivity {
+//    HostActivity getHostActivity();
 
     Application getApplication();
 

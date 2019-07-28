@@ -16,7 +16,7 @@
  *
  */
 
-package com.redstar.magic.pluginlib.container;
+package com.redstar.magic.pluginlib.proxy;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -87,7 +87,6 @@ import android.view.WindowManager;
 import android.view.accessibility.AccessibilityEvent;
 import android.widget.Toolbar;
 
-import com.redstar.magic.pluginlib.BuildConfig;
 import com.redstar.magic.pluginlib.MagicActivity;
 import com.redstar.magic.pluginlib.MagicActivityDelegate;
 
@@ -101,24 +100,22 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.List;
 
-import static com.redstar.magic.pluginlib.container.DelegateProvider.LOADER_VERSION_KEY;
-import static com.redstar.magic.pluginlib.container.DelegateProvider.PROCESS_ID_KEY;
 
 
 /**
- * 插件的容器Activity。PluginLoader将把插件的Activity放在其中。
- * PluginContainerActivity以委托模式将Activity的所有回调方法委托给DelegateProviderHolder提供的Delegate。
+ * 插件的代理Activity。PluginLoader将把插件的Activity放在其中。
+ * PluginProxyActivity以委托模式将Activity的所有回调方法委托给Delegate。
  *
- * @author cubershi
+ * @author chen.huarong
  */
-public class PluginContainerActivity extends Activity implements HostActivity, HostActivityDelegator {
+public class PluginProxyActivity extends Activity implements IProxyActivity {
     private static final String TAG = "PluginContainerActivity";
 
     HostActivityDelegate hostActivityDelegate;
 
     private boolean isBeforeOnCreate = true;
 
-    public PluginContainerActivity() {
+    public PluginProxyActivity() {
 //        HostActivityDelegate delegate;
 //        if (DelegateProviderHolder.delegateProvider != null) {
 //            delegate = DelegateProviderHolder.delegateProvider.getHostActivityDelegate(this.getClass());
@@ -149,7 +146,8 @@ public class PluginContainerActivity extends Activity implements HostActivity, H
 //        boolean illegalIntent = isIllegalIntent(savedInstanceState);
 //        if (illegalIntent) {
 //            hostActivityDelegate = null;
-//            Log.e(TAG, "illegalIntent savedInstanceState==" + savedInstanceState + " getIntent().getExtras()==" + getIntent().getExtras());
+//            Log.e(TAG, "illegalIntent savedInstanceState==" + savedInstanceState + " getIntent().getExtras()==" +
+//            getIntent().getExtras());
 //        }
 
         if (hostActivityDelegate != null) {
@@ -168,28 +166,28 @@ public class PluginContainerActivity extends Activity implements HostActivity, H
      * 1.插件版本变化之后，残留于系统中的PendingIntent或系统因回收内存杀死进程残留的任务栈而启动。
      * 由于插件版本变化，PluginLoader逻辑可能不一致，Intent中的参数可能不能满足新代码的启动条件。
      * 2.外部的非法启动，无法确定一个插件的Activity。
-     *
-     *
+     * <p>
+     * <p>
      * 3.不支持进程重启后莫名其妙的原因loader也加载了，但是可能要启动的plugin没有load，出现异常
      *
      * @param savedInstanceState onCreate时系统还回来的savedInstanceState
      * @return <code>true</code>表示这次启动不是我们预料的，需要尽早finish并退出进程。
      */
     private boolean isIllegalIntent(Bundle savedInstanceState) {
-        Bundle extras = getIntent().getExtras();
-        if (extras == null && savedInstanceState == null) {
+//        Bundle extras = getIntent().getExtras();
+//        if (extras == null && savedInstanceState == null) {
+//            return true;
+//        }
+//        Bundle bundle;
+//        bundle = savedInstanceState == null ? extras : savedInstanceState;
+//        try {
+//            String loaderVersion = bundle.getString(LOADER_VERSION_KEY);
+//            long processVersion = bundle.getLong(PROCESS_ID_KEY);
+//            return !BuildConfig.VERSION_NAME.equals(loaderVersion) || processVersion != DelegateProviderHolder.sCustomPid;
+//        } catch (Throwable ignored) {
+//            //捕获可能的非法Intent中包含我们根本反序列化不了的数据
             return true;
-        }
-        Bundle bundle;
-        bundle = savedInstanceState == null ? extras : savedInstanceState;
-        try {
-            String loaderVersion = bundle.getString(LOADER_VERSION_KEY);
-            long processVersion = bundle.getLong(PROCESS_ID_KEY);
-            return !BuildConfig.VERSION_NAME.equals(loaderVersion) || processVersion != DelegateProviderHolder.sCustomPid;
-        } catch (Throwable ignored) {
-            //捕获可能的非法Intent中包含我们根本反序列化不了的数据
-            return true;
-        }
+//        }
     }
 
     @Override
@@ -218,8 +216,8 @@ public class PluginContainerActivity extends Activity implements HostActivity, H
             super.onSaveInstanceState(outState);
         }
         //避免插件setIntent清空掉LOADER_VERSION_KEY
-        outState.putString(LOADER_VERSION_KEY, BuildConfig.VERSION_NAME);
-        outState.putLong(PROCESS_ID_KEY, DelegateProviderHolder.sCustomPid);
+//        outState.putString(LOADER_VERSION_KEY, BuildConfig.VERSION_NAME);
+//        outState.putLong(PROCESS_ID_KEY, DelegateProviderHolder.sCustomPid);
     }
 
     @Override
@@ -528,20 +526,20 @@ public class PluginContainerActivity extends Activity implements HostActivity, H
         }
     }
 
-    @Override
-    public HostActivity getHostActivity() {
-        return this;
-    }
-
-    @Override
-    public Activity getImplementActivity() {
-        return this;
-    }
-
-    @Override
-    public Window getImplementWindow() {
-        return getWindow();
-    }
+//    @Override
+//    public HostActivity getHostActivity() {
+//        return this;
+//    }
+//
+//    @Override
+//    public Activity getImplementActivity() {
+//        return this;
+//    }
+//
+//    @Override
+//    public Window getImplementWindow() {
+//        return getWindow();
+//    }
 
     @SuppressWarnings("NullableProblems")
     @Override
@@ -917,7 +915,8 @@ public class PluginContainerActivity extends Activity implements HostActivity, H
         super.closeContextMenu();
     }
 
-    public void superStartSearch(String initialQuery, boolean selectInitialQuery, Bundle appSearchData, boolean globalSearch) {
+    public void superStartSearch(String initialQuery, boolean selectInitialQuery, Bundle appSearchData,
+                                 boolean globalSearch) {
         super.startSearch(initialQuery, selectInitialQuery, appSearchData, globalSearch);
     }
 
@@ -960,13 +959,16 @@ public class PluginContainerActivity extends Activity implements HostActivity, H
         return super.isActivityTransitionRunning();
     }
 
-    public void superStartIntentSenderForResult(IntentSender intent, int requestCode, Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags) throws IntentSender.SendIntentException {
+    public void superStartIntentSenderForResult(IntentSender intent, int requestCode, Intent fillInIntent,
+                                                int flagsMask, int flagsValues, int extraFlags) throws IntentSender.SendIntentException {
         super.startIntentSenderForResult(intent, requestCode, fillInIntent, flagsMask, flagsValues, extraFlags);
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    public void superStartIntentSenderForResult(IntentSender intent, int requestCode, Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, Bundle options) throws IntentSender.SendIntentException {
-        super.startIntentSenderForResult(intent, requestCode, fillInIntent, flagsMask, flagsValues, extraFlags, options);
+    public void superStartIntentSenderForResult(IntentSender intent, int requestCode, Intent fillInIntent,
+                                                int flagsMask, int flagsValues, int extraFlags, Bundle options) throws IntentSender.SendIntentException {
+        super.startIntentSenderForResult(intent, requestCode, fillInIntent, flagsMask, flagsValues, extraFlags,
+                options);
     }
 
     public void superStartActivity(Intent intent) {
@@ -987,12 +989,14 @@ public class PluginContainerActivity extends Activity implements HostActivity, H
         super.startActivities(intents, options);
     }
 
-    public void superStartIntentSender(IntentSender intent, Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags) throws IntentSender.SendIntentException {
+    public void superStartIntentSender(IntentSender intent, Intent fillInIntent, int flagsMask, int flagsValues,
+                                       int extraFlags) throws IntentSender.SendIntentException {
         super.startIntentSender(intent, fillInIntent, flagsMask, flagsValues, extraFlags);
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    public void superStartIntentSender(IntentSender intent, Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, Bundle options) throws IntentSender.SendIntentException {
+    public void superStartIntentSender(IntentSender intent, Intent fillInIntent, int flagsMask, int flagsValues,
+                                       int extraFlags, Bundle options) throws IntentSender.SendIntentException {
         super.startIntentSender(intent, fillInIntent, flagsMask, flagsValues, extraFlags, options);
     }
 
@@ -1032,13 +1036,17 @@ public class PluginContainerActivity extends Activity implements HostActivity, H
         super.startActivityFromFragment(fragment, intent, requestCode, options);
     }
 
-    public void superStartIntentSenderFromChild(Activity child, IntentSender intent, int requestCode, Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags) throws IntentSender.SendIntentException {
+    public void superStartIntentSenderFromChild(Activity child, IntentSender intent, int requestCode,
+                                                Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags) throws IntentSender.SendIntentException {
         super.startIntentSenderFromChild(child, intent, requestCode, fillInIntent, flagsMask, flagsValues, extraFlags);
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    public void superStartIntentSenderFromChild(Activity child, IntentSender intent, int requestCode, Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, Bundle options) throws IntentSender.SendIntentException {
-        super.startIntentSenderFromChild(child, intent, requestCode, fillInIntent, flagsMask, flagsValues, extraFlags, options);
+    public void superStartIntentSenderFromChild(Activity child, IntentSender intent, int requestCode,
+                                                Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags,
+                                                Bundle options) throws IntentSender.SendIntentException {
+        super.startIntentSenderFromChild(child, intent, requestCode, fillInIntent, flagsMask, flagsValues, extraFlags
+                , options);
     }
 
     public void superOverridePendingTransition(int enterAnim, int exitAnim) {
@@ -1429,7 +1437,8 @@ public class PluginContainerActivity extends Activity implements HostActivity, H
         return super.openOrCreateDatabase(name, mode, factory);
     }
 
-    public SQLiteDatabase superOpenOrCreateDatabase(String name, int mode, SQLiteDatabase.CursorFactory factory, DatabaseErrorHandler errorHandler) {
+    public SQLiteDatabase superOpenOrCreateDatabase(String name, int mode, SQLiteDatabase.CursorFactory factory,
+                                                    DatabaseErrorHandler errorHandler) {
         return super.openOrCreateDatabase(name, mode, factory, errorHandler);
     }
 
@@ -1487,8 +1496,11 @@ public class PluginContainerActivity extends Activity implements HostActivity, H
         super.sendOrderedBroadcast(intent, receiverPermission);
     }
 
-    public void superSendOrderedBroadcast(Intent intent, String receiverPermission, BroadcastReceiver resultReceiver, Handler scheduler, int initialCode, String initialData, Bundle initialExtras) {
-        super.sendOrderedBroadcast(intent, receiverPermission, resultReceiver, scheduler, initialCode, initialData, initialExtras);
+    public void superSendOrderedBroadcast(Intent intent, String receiverPermission, BroadcastReceiver resultReceiver,
+                                          Handler scheduler, int initialCode, String initialData,
+                                          Bundle initialExtras) {
+        super.sendOrderedBroadcast(intent, receiverPermission, resultReceiver, scheduler, initialCode, initialData,
+                initialExtras);
     }
 
     @SuppressLint("MissingPermission")
@@ -1503,7 +1515,9 @@ public class PluginContainerActivity extends Activity implements HostActivity, H
         super.sendBroadcastAsUser(intent, user, receiverPermission);
     }
 
-    public void superSendOrderedBroadcastAsUser(Intent intent, UserHandle user, String receiverPermission, BroadcastReceiver resultReceiver, Handler scheduler, int initialCode, String initialData, Bundle initialExtras) {
+    public void superSendOrderedBroadcastAsUser(Intent intent, UserHandle user, String receiverPermission,
+                                                BroadcastReceiver resultReceiver, Handler scheduler, int initialCode,
+                                                String initialData, Bundle initialExtras) {
     }
 
     @SuppressLint("MissingPermission")
@@ -1512,7 +1526,8 @@ public class PluginContainerActivity extends Activity implements HostActivity, H
     }
 
     @SuppressLint("MissingPermission")
-    public void superSendStickyOrderedBroadcast(Intent intent, BroadcastReceiver resultReceiver, Handler scheduler, int initialCode, String initialData, Bundle initialExtras) {
+    public void superSendStickyOrderedBroadcast(Intent intent, BroadcastReceiver resultReceiver, Handler scheduler,
+                                                int initialCode, String initialData, Bundle initialExtras) {
         super.sendStickyOrderedBroadcast(intent, resultReceiver, scheduler, initialCode, initialData, initialExtras);
     }
 
@@ -1529,8 +1544,11 @@ public class PluginContainerActivity extends Activity implements HostActivity, H
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     @SuppressLint("MissingPermission")
-    public void superSendStickyOrderedBroadcastAsUser(Intent intent, UserHandle user, BroadcastReceiver resultReceiver, Handler scheduler, int initialCode, String initialData, Bundle initialExtras) {
-        super.sendStickyOrderedBroadcastAsUser(intent, user, resultReceiver, scheduler, initialCode, initialData, initialExtras);
+    public void superSendStickyOrderedBroadcastAsUser(Intent intent, UserHandle user,
+                                                      BroadcastReceiver resultReceiver, Handler scheduler,
+                                                      int initialCode, String initialData, Bundle initialExtras) {
+        super.sendStickyOrderedBroadcastAsUser(intent, user, resultReceiver, scheduler, initialCode, initialData,
+                initialExtras);
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
@@ -1548,12 +1566,14 @@ public class PluginContainerActivity extends Activity implements HostActivity, H
         return super.registerReceiver(receiver, filter, flags);
     }
 
-    public Intent superRegisterReceiver(BroadcastReceiver receiver, IntentFilter filter, String broadcastPermission, Handler scheduler) {
+    public Intent superRegisterReceiver(BroadcastReceiver receiver, IntentFilter filter, String broadcastPermission,
+                                        Handler scheduler) {
         return super.registerReceiver(receiver, filter, broadcastPermission, scheduler);
     }
 
     @TargetApi(Build.VERSION_CODES.O)
-    public Intent superRegisterReceiver(BroadcastReceiver receiver, IntentFilter filter, String broadcastPermission, Handler scheduler, int flags) {
+    public Intent superRegisterReceiver(BroadcastReceiver receiver, IntentFilter filter, String broadcastPermission,
+                                        Handler scheduler, int flags) {
         return super.registerReceiver(receiver, filter, broadcastPermission, scheduler, flags);
     }
 
@@ -1645,7 +1665,8 @@ public class PluginContainerActivity extends Activity implements HostActivity, H
         return super.checkCallingOrSelfUriPermission(uri, modeFlags);
     }
 
-    public int superCheckUriPermission(Uri uri, String readPermission, String writePermission, int pid, int uid, int modeFlags) {
+    public int superCheckUriPermission(Uri uri, String readPermission, String writePermission, int pid, int uid,
+                                       int modeFlags) {
         return super.checkUriPermission(uri, readPermission, writePermission, pid, uid, modeFlags);
     }
 
@@ -1661,7 +1682,8 @@ public class PluginContainerActivity extends Activity implements HostActivity, H
         super.enforceCallingOrSelfUriPermission(uri, modeFlags, message);
     }
 
-    public void superEnforceUriPermission(Uri uri, String readPermission, String writePermission, int pid, int uid, int modeFlags, String message) {
+    public void superEnforceUriPermission(Uri uri, String readPermission, String writePermission, int pid, int uid,
+                                          int modeFlags, String message) {
         super.enforceUriPermission(uri, readPermission, writePermission, pid, uid, modeFlags, message);
     }
 
