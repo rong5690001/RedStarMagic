@@ -5,7 +5,10 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
+import android.text.TextUtils;
 import android.widget.Toast;
+
+import com.redstar.magic.pluginlib.utils.FileUtils;
 
 import java.io.File;
 import java.lang.reflect.Method;
@@ -13,6 +16,8 @@ import java.lang.reflect.Method;
 import dalvik.system.DexClassLoader;
 
 public class PluginManager {
+
+    private static final String TAG = PluginManager.class.getSimpleName();
 
     private static final PluginManager ourInstance = new PluginManager();
 
@@ -26,20 +31,28 @@ public class PluginManager {
     private Context mContext;
     private PluginApk mPluginApk;
     private InstalledApk mInstalledApk;
+    private IPluginComponentLauncher mComponentLauncher;
 
     public void init(Context context) {
         mContext = context.getApplicationContext();
+        mComponentLauncher = new PluginComponentLauncher();
     }
 
     /**
      * 加载插件apk
      *
-     * @param apkPath
+     * @param pluginName
+     * @return 是否加载成功
      */
-    public void loadApk(String apkPath) {
-        if (mPluginApk != null) {
+    public boolean loadApk(String pluginName) {
+        if (isInstalled()) {
             Toast.makeText(mContext, "已加载", Toast.LENGTH_SHORT).show();
-            return;
+            return false;
+        }
+        String apkPath = FileUtils.copyAssetAndWrite(mContext, pluginName + ".apk");
+        if (TextUtils.isEmpty(apkPath)) {
+            Logger.e(TAG, "apkPath is null");
+            return false;
         }
         File file = mContext.getDir("dex", Context.MODE_PRIVATE);
         mInstalledApk = new InstalledApk(apkPath, file.getAbsolutePath(), apkPath);
@@ -52,7 +65,7 @@ public class PluginManager {
 
         if (packageInfo == null) {
             Toast.makeText(mContext, "加载失败", Toast.LENGTH_SHORT).show();
-            return;
+            return false;
         }
         packageInfo.applicationInfo.publicSourceDir = apkPath;
         packageInfo.applicationInfo.sourceDir = apkPath;
@@ -65,11 +78,17 @@ public class PluginManager {
             mPluginApk = new PluginApk(packageInfo, resources, classLoader);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
+            return false;
         }
+        return true;
     }
 
     public PluginApk getPluginApk() {
         return mPluginApk;
+    }
+
+    public IPluginComponentLauncher getComponentLauncher() {
+        return mComponentLauncher;
     }
 
     /**
@@ -113,6 +132,15 @@ public class PluginManager {
     private Resources createResources(AssetManager am) {
         Resources res = mContext.getResources();
         return new Resources(am, res.getDisplayMetrics(), res.getConfiguration());
+    }
+
+    /**
+     * 插件是否已安装
+     *
+     * @return
+     */
+    public boolean isInstalled() {
+        return mPluginApk != null;
     }
 
 }

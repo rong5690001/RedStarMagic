@@ -18,14 +18,12 @@
 
 package com.redstar.magic.pluginlib;
 
-import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Build;
-import android.view.ContextThemeWrapper;
+import android.support.v4.app.FragmentActivity;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -35,7 +33,7 @@ import java.io.FileOutputStream;
 /**
  * 将Context上所有get*Dir方法都放到原实现的子目录中
  */
-abstract class PluginDirContextThemeWrapper extends ContextThemeWrapper {
+abstract class PluginDirContextThemeWrapper extends FragmentActivity {
 
     private final Object mSync = new Object();
 
@@ -55,14 +53,14 @@ abstract class PluginDirContextThemeWrapper extends ContextThemeWrapper {
         super();
     }
 
-    public PluginDirContextThemeWrapper(Context base, int themeResId) {
-        super(base, themeResId);
-    }
-
-    @TargetApi(Build.VERSION_CODES.M)
-    public PluginDirContextThemeWrapper(Context base, Resources.Theme theme) {
-        super(base, theme);
-    }
+//    public PluginDirContextThemeWrapper(Context base, int themeResId) {
+//        super(base, themeResId);
+//    }
+//
+//    @TargetApi(Build.VERSION_CODES.M)
+//    public PluginDirContextThemeWrapper(Context base, Resources.Theme theme) {
+//        super(base, theme);
+//    }
 
     @Override
     public File getDataDir() {

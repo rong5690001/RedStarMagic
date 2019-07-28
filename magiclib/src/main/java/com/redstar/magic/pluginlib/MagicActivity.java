@@ -24,8 +24,6 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.media.session.MediaController;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.DragAndDropPermissions;
@@ -37,14 +35,16 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.redstar.magic.pluginlib.utils.FileUtils;
+
 public abstract class MagicActivity extends PluginActivity {
 
-    private int mFragmentManagerHash;
+//    private int mFragmentManagerHash;
 
 //    private PluginFragmentManager mPluginFragmentManager;
 
     public void setContentView(int layoutResID) {
-        if ("merge".equals(XmlPullParserUtil.getLayoutStartTagName(getResources(), layoutResID))) {
+        if ("merge".equals(FileUtils.XmlPullParserUtil.getLayoutStartTagName(getResources(), layoutResID))) {
             //如果传进来的xml文件的根tag是merge时，需要特殊处理
             View decorView = mHostActivityDelegator.getWindow().getDecorView();
             ViewGroup viewGroup = decorView.findViewById(android.R.id.content);
@@ -71,9 +71,9 @@ public abstract class MagicActivity extends PluginActivity {
         mHostActivityDelegator.superAddContentView(view, params);
     }
 
-    public final MagicApplication getApplication() {
-        return mPluginApplication;
-    }
+//    public final MagicApplication getApplication() {
+//        return mPluginApplication;
+//    }
 
 //    public PluginFragmentManager getFragmentManager() {
 //        FragmentManager fragmentManager = mHostActivityDelegator.getFragmentManager();
@@ -102,9 +102,9 @@ public abstract class MagicActivity extends PluginActivity {
     }
 
 
-    public final MagicActivity getParent() {
-        return null;
-    }
+//    public final MagicActivity getParent() {
+//        return null;
+//    }
 
     public void overridePendingTransition(int enterAnim, int exitAnim) {
         //如果使用的资源不是系统资源，我们无法支持这个特性。
@@ -129,9 +129,9 @@ public abstract class MagicActivity extends PluginActivity {
         return mHostActivityDelegator.isDestroyed();
     }
 
-    public final boolean requestWindowFeature(int featureId) {
-        return mHostActivityDelegator.requestWindowFeature(featureId);
-    }
+//    public final boolean requestWindowFeature(int featureId) {
+//        return mHostActivityDelegator.requestWindowFeature(featureId);
+//    }
 
     public void startActivityForResult(Intent intent, int requestCode) {
         startActivityForResult(intent, requestCode, null);
@@ -148,13 +148,13 @@ public abstract class MagicActivity extends PluginActivity {
     }
 
 
-    public final void setResult(int resultCode) {
-        mHostActivityDelegator.setResult(resultCode);
-    }
+//    public final void setResult(int resultCode) {
+//        mHostActivityDelegator.setResult(resultCode);
+//    }
 
-    public final void setResult(int resultCode, Intent data) {
-        mHostActivityDelegator.setResult(resultCode, data);
-    }
+//    public final void setResult(int resultCode, Intent data) {
+//        mHostActivityDelegator.setResult(resultCode, data);
+//    }
 
     public SharedPreferences getPreferences(int mode) {
         return super.getSharedPreferences(getLocalClassName(), mode);
@@ -168,25 +168,25 @@ public abstract class MagicActivity extends PluginActivity {
         mHostActivityDelegator.recreate();
     }
 
-    public void runOnUiThread(Runnable action) {
-        mHostActivityDelegator.runOnUiThread(action);
-    }
+//    public void runOnUiThread(Runnable action) {
+//        mHostActivityDelegator.runOnUiThread(action);
+//    }
 
     public void setTitleColor(int textColor) {
         mHostActivityDelegator.setTitleColor(textColor);
     }
 
-    public final int getTitleColor() {
-        return mHostActivityDelegator.getTitleColor();
-    }
+//    public final int getTitleColor() {
+//        return mHostActivityDelegator.getTitleColor();
+//    }
 
     public void setTitle(int var1) {
         mHostActivityDelegator.setTitle(var1);
     }
 
-    public CharSequence getTitle() {
-        return mHostActivityDelegator.getTitle();
-    }
+//    public CharSequence getTitle() {
+//        return mHostActivityDelegator.getTitle();
+//    }
 
     public void setRequestedOrientation(int requestedOrientation) {
         mHostActivityDelegator.setRequestedOrientation(requestedOrientation);
@@ -200,10 +200,10 @@ public abstract class MagicActivity extends PluginActivity {
         return mHostActivityDelegator.getMenuInflater();
     }
 
-
-    public final void requestPermissions(String[] permissions, int requestCode) {
-        mHostActivityDelegator.requestPermissions(permissions, requestCode);
-    }
+//
+//    public final void requestPermissions(String[] permissions, int requestCode) {
+//        mHostActivityDelegator.requestPermissions(permissions, requestCode);
+//    }
 
     public ActionBar getActionBar() {
         return mHostActivityDelegator.getActionBar();
@@ -221,11 +221,11 @@ public abstract class MagicActivity extends PluginActivity {
         return mHostActivityDelegator.getCurrentFocus();
     }
 
-    @Deprecated
-    public final Cursor managedQuery(Uri uri, String[] projection, String selection,
-                                     String[] selectionArgs, String sortOrder) {
-        return mHostActivityDelegator.managedQuery(uri, projection, selection, selectionArgs, sortOrder);
-    }
+//    @Deprecated
+//    public final Cursor managedQuery(Uri uri, String[] projection, String selection,
+//                                     String[] selectionArgs, String sortOrder) {
+//        return mHostActivityDelegator.managedQuery(uri, projection, selection, selectionArgs, sortOrder);
+//    }
 
     public ComponentName getComponentName() {
         return mHostActivityDelegator.getComponentName();
@@ -235,13 +235,13 @@ public abstract class MagicActivity extends PluginActivity {
         return mHostActivityDelegator.shouldShowRequestPermissionRationale(permission);
     }
 
-    public final void setMediaController(MediaController controller) {
-        mHostActivityDelegator.setMediaController(controller);
-    }
-
-    public final MediaController getMediaController() {
-        return mHostActivityDelegator.getMediaController();
-    }
+//    public final void setMediaController(MediaController controller) {
+//        mHostActivityDelegator.setMediaController(controller);
+//    }
+//
+//    public final MediaController getMediaController() {
+//        return mHostActivityDelegator.getMediaController();
+//    }
 
     public boolean shouldUpRecreateTask(Intent targetIntent) {
         Intent intent = mPluginComponentLauncher.convertPluginActivityIntent(targetIntent);
@@ -313,13 +313,13 @@ public abstract class MagicActivity extends PluginActivity {
         return mHostActivityDelegator.getCallingActivity();
     }
 
-    public final void setVolumeControlStream(int streamType) {
-        mHostActivityDelegator.setVolumeControlStream(streamType);
-    }
-
-    public final int getVolumeControlStream() {
-        return mHostActivityDelegator.getVolumeControlStream();
-    }
+//    public final void setVolumeControlStream(int streamType) {
+//        mHostActivityDelegator.setVolumeControlStream(streamType);
+//    }
+//
+//    public final int getVolumeControlStream() {
+//        return mHostActivityDelegator.getVolumeControlStream();
+//    }
 
     public boolean isInMultiWindowMode() {
         return mHostActivityDelegator.isInMultiWindowMode();

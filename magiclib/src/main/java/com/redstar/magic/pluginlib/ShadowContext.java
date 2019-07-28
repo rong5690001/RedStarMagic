@@ -25,7 +25,6 @@ import android.content.ServiceConnection;
 import android.content.pm.ApplicationInfo;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Pair;
 import android.view.LayoutInflater;
@@ -35,7 +34,7 @@ import com.redstar.magic.pluginlib.container.MixResources;
 
 
 public class ShadowContext extends PluginDirContextThemeWrapper {
-    PluginComponentLauncher mPluginComponentLauncher;
+    IPluginComponentLauncher mPluginComponentLauncher;
     ClassLoader mPluginClassLoader;
     MagicApplication mShadowApplication;
     Resources mPluginResources;
@@ -45,14 +44,15 @@ public class ShadowContext extends PluginDirContextThemeWrapper {
     String mDexPath;
     protected String mPartKey;
     private String mBusinessName;
+    private String mPluginName;
 //    private ShadowRemoteViewCreatorProvider mRemoteViewCreatorProvider;
 
     public ShadowContext() {
     }
 
-    public ShadowContext(Context base, int themeResId) {
-        super(base, themeResId);
-    }
+//    public ShadowContext(Context base, int themeResId) {
+//        super(base, themeResId);
+//    }
 
     public final void setPluginResources(Resources resources) {
         mPluginResources = resources;
@@ -62,7 +62,7 @@ public class ShadowContext extends PluginDirContextThemeWrapper {
         mPluginClassLoader = classLoader;
     }
 
-    public void setPluginComponentLauncher(PluginComponentLauncher pluginComponentLauncher) {
+    public void setPluginComponentLauncher(IPluginComponentLauncher pluginComponentLauncher) {
         mPluginComponentLauncher = pluginComponentLauncher;
     }
 
@@ -96,6 +96,11 @@ public class ShadowContext extends PluginDirContextThemeWrapper {
 //    public final ShadowRemoteViewCreatorProvider getRemoteViewCreatorProvider() {
 //        return mRemoteViewCreatorProvider;
 //    }
+
+
+    public void setPluginName(String pluginName) {
+        mPluginName = pluginName;
+    }
 
     @Override
     public Context getApplicationContext() {
@@ -139,43 +144,6 @@ public class ShadowContext extends PluginDirContextThemeWrapper {
         return mPluginClassLoader;
     }
 
-    public interface PluginComponentLauncher {
-        /**
-         * 启动Activity
-         *
-         * @param shadowContext 启动context
-         * @param intent        插件内传来的Intent.
-         * @return <code>true</code>表示该Intent是为了启动插件内Activity的,已经被正确消费了.
-         * <code>false</code>表示该Intent不是插件内的Activity.
-         */
-        boolean startActivity(ShadowContext shadowContext, Intent intent);
-
-        /**
-         * 启动Activity
-         *
-         * @param delegator       发起启动的activity的delegator
-         * @param intent          插件内传来的Intent.
-         * @param callingActivity 调用者
-         * @return <code>true</code>表示该Intent是为了启动插件内Activity的,已经被正确消费了.
-         * <code>false</code>表示该Intent不是插件内的Activity.
-         */
-        boolean startActivityForResult(HostActivityDelegator delegator, Intent intent,
-                                       int requestCode, Bundle option,
-                                       ComponentName callingActivity);
-
-        Pair<Boolean, ComponentName> startService(ShadowContext context, Intent service);
-
-        Pair<Boolean, Boolean> stopService(ShadowContext context, Intent name);
-
-        Pair<Boolean, Boolean> bindService(ShadowContext context, Intent service,
-                                           ServiceConnection conn, int flags);
-
-        Pair<Boolean, ?> unbindService(ShadowContext context, ServiceConnection conn);
-
-        Intent convertPluginActivityIntent(Intent pluginIntent);
-
-    }
-
     @Override
     public void startActivity(Intent intent) {
         final Intent pluginIntent = new Intent(intent);
@@ -187,7 +155,7 @@ public class ShadowContext extends PluginDirContextThemeWrapper {
     }
 
     public void superStartActivity(Intent intent) {
-        super.startActivity(intent);
+        getBaseContext().startActivity(intent);
     }
 
     @Override
@@ -238,7 +206,7 @@ public class ShadowContext extends PluginDirContextThemeWrapper {
         return applicationInfo;
     }
 
-    public PluginComponentLauncher getPendingIntentConverter() {
+    public IPluginComponentLauncher getPendingIntentConverter() {
         return mPluginComponentLauncher;
     }
 

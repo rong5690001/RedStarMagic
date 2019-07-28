@@ -18,6 +18,7 @@
 
 package com.redstar.magic.pluginlib;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.Fragment;
@@ -62,10 +63,12 @@ public abstract class PluginActivity extends ShadowContext implements Window.Cal
         mPluginApplication = pluginApplication;
     }
 
+    @SuppressLint("MissingSuperCall")
     public void onCreate(Bundle savedInstanceState) {
         mHostActivityDelegator.superOnCreate(savedInstanceState);
     }
 
+    @SuppressLint("MissingSuperCall")
     public void onResume() {
         mHostActivityDelegator.superOnResume();
     }
@@ -74,22 +77,27 @@ public abstract class PluginActivity extends ShadowContext implements Window.Cal
         mHostActivityDelegator.superOnNewIntent(intent);
     }
 
+    @SuppressLint("MissingSuperCall")
     public void onSaveInstanceState(Bundle outState) {
         mHostActivityDelegator.superOnSaveInstanceState(outState);
     }
 
+    @SuppressLint("MissingSuperCall")
     public void onPause() {
         mHostActivityDelegator.superOnPause();
     }
 
+    @SuppressLint("MissingSuperCall")
     public void onStart() {
         mHostActivityDelegator.superOnStart();
     }
 
+    @SuppressLint("MissingSuperCall")
     public void onStop() {
         mHostActivityDelegator.superOnStop();
     }
 
+    @SuppressLint("MissingSuperCall")
     public void onDestroy() {
         mHostActivityDelegator.superOnDestroy();
     }
@@ -118,10 +126,12 @@ public abstract class PluginActivity extends ShadowContext implements Window.Cal
         mHostActivityDelegator.superOnRestoreInstanceState(savedInstanceState);
     }
 
+    @SuppressLint("MissingSuperCall")
     public void onPostCreate(Bundle savedInstanceState) {
         mHostActivityDelegator.superOnPostCreate(savedInstanceState);
     }
 
+    @SuppressLint("MissingSuperCall")
     public void onRestart() {
         mHostActivityDelegator.superOnRestart();
     }
@@ -138,9 +148,9 @@ public abstract class PluginActivity extends ShadowContext implements Window.Cal
         return mHostActivityDelegator.superOnCreateDescription();
     }
 
-    public Object onRetainNonConfigurationInstance() {
-        return mHostActivityDelegator.superOnRetainNonConfigurationInstance();
-    }
+//    public Object onRetainNonConfigurationInstance() {
+//        return mHostActivityDelegator.superOnRetainNonConfigurationInstance();
+//    }
 
     public void onLowMemory() {
         mHostActivityDelegator.superOnLowMemory();
@@ -295,11 +305,13 @@ public abstract class PluginActivity extends ShadowContext implements Window.Cal
         return mHostActivityDelegator.superOnWindowStartingActionMode(callback, type);
     }
 
+    @SuppressLint("MissingSuperCall")
     @Override
     public void onActionModeStarted(ActionMode mode) {
         mHostActivityDelegator.superOnActionModeStarted(mode);
     }
 
+    @SuppressLint("MissingSuperCall")
     @Override
     public void onActionModeFinished(ActionMode mode) {
         mHostActivityDelegator.superOnActionModeFinished(mode);
@@ -319,6 +331,7 @@ public abstract class PluginActivity extends ShadowContext implements Window.Cal
         mHostActivityDelegator.recreate();
     }
 
+    @SuppressLint("MissingSuperCall")
     public void onMultiWindowModeChanged(boolean isInMultiWindowMode) {
         mHostActivityDelegator.superOnMultiWindowModeChanged(isInMultiWindowMode);
     }
