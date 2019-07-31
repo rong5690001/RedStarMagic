@@ -554,7 +554,7 @@ public class PluginProxyActivity extends Activity implements IProxyActivity {
     @Override
     public Resources getResources() {
         if (hostActivityDelegate != null) {
-            return hostActivityDelegate.getResources();
+            return hostActivityDelegate.getPluginResources();
         } else {
             return super.getResources();
         }

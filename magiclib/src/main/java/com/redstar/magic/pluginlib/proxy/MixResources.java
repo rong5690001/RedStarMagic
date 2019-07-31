@@ -33,6 +33,9 @@ import com.redstar.magic.pluginlib.ResourcesWrapper;
 
 import java.io.InputStream;
 
+/**
+ * 合并插件和宿主的资源
+ */
 public class MixResources extends ResourcesWrapper {
 
     private Resources mHostResources;

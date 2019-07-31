@@ -46,7 +46,7 @@ import com.redstar.magic.pluginlib.proxy.IProxyActivity;
 
 import java.util.List;
 
-public abstract class PluginActivity extends ShadowContext implements Window.Callback{
+public abstract class PluginActivity extends MagicContext implements Window.Callback{
     IProxyActivity mHostActivityDelegator;
 
     MagicApplication mPluginApplication;

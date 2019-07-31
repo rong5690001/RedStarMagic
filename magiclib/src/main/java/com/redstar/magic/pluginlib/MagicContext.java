@@ -38,7 +38,7 @@ import com.redstar.magic.pluginlib.proxy.MixResources;
  * 2、处理启动组件逻辑
  * author:chen.huarong
  */
-public class ShadowContext extends PluginDirContextThemeWrapper {
+public class MagicContext extends PluginDirContextThemeWrapper {
     IPluginComponentLauncher mPluginComponentLauncher;
     ClassLoader mPluginClassLoader;
     MagicApplication mShadowApplication;
@@ -51,7 +51,7 @@ public class ShadowContext extends PluginDirContextThemeWrapper {
     private String mPluginName;
 //    private ShadowRemoteViewCreatorProvider mRemoteViewCreatorProvider;
 
-    public ShadowContext() {
+    public MagicContext() {
     }
 
 //    public ShadowContext(Context base, int themeResId) {
@@ -128,7 +128,7 @@ public class ShadowContext extends PluginDirContextThemeWrapper {
     public Object getSystemService(String name) {
 //        if (LAYOUT_INFLATER_SERVICE.equals(name)) {
 //            if (mLayoutInflater == null) {
-//                LayoutInflater inflater = (LayoutInflater) super.getSystemService(name);
+//                LayoutInflater inflater = (LayoutInflater) getBaseContext().getSystemService(name);
 //                mLayoutInflater = ShadowLayoutInflater.build(inflater, this, mPartKey);
 //            }
 //            return mLayoutInflater;
@@ -147,7 +147,7 @@ public class ShadowContext extends PluginDirContextThemeWrapper {
         pluginIntent.setExtrasClassLoader(mPluginClassLoader);
         final boolean success = mPluginComponentLauncher.startActivity(this, pluginIntent);
         if (!success) {
-            super.startActivity(intent);
+            getBaseContext().startActivity(intent);
         }
     }
 
@@ -158,46 +158,46 @@ public class ShadowContext extends PluginDirContextThemeWrapper {
     @Override
     public void unbindService(ServiceConnection conn) {
         if (!mPluginComponentLauncher.unbindService(this, conn).first)
-            super.unbindService(conn);
+            getBaseContext().unbindService(conn);
     }
 
     @Override
     public boolean bindService(Intent service, ServiceConnection conn, int flags) {
         if (service.getComponent() == null) {
-            return super.bindService(service, conn, flags);
+            return getBaseContext().bindService(service, conn, flags);
         }
         Pair<Boolean, Boolean> ret = mPluginComponentLauncher.bindService(this, service, conn,
                 flags);
         if (!ret.first)
-            return super.bindService(service, conn, flags);
+            return getBaseContext().bindService(service, conn, flags);
         return ret.second;
     }
 
     @Override
     public boolean stopService(Intent name) {
         if (name.getComponent() == null) {
-            return super.stopService(name);
+            return getBaseContext().stopService(name);
         }
         Pair<Boolean, Boolean> ret = mPluginComponentLauncher.stopService(this, name);
         if (!ret.first)
-            return super.stopService(name);
+            return getBaseContext().stopService(name);
         return ret.second;
     }
 
     @Override
     public ComponentName startService(Intent service) {
         if (service.getComponent() == null) {
-            return super.startService(service);
+            return getBaseContext().startService(service);
         }
         Pair<Boolean, ComponentName> ret = mPluginComponentLauncher.startService(this, service);
         if (!ret.first)
-            return super.startService(service);
+            return getBaseContext().startService(service);
         return ret.second;
     }
 
     @Override
     public ApplicationInfo getApplicationInfo() {
-        final ApplicationInfo applicationInfo = super.getApplicationInfo();
+        final ApplicationInfo applicationInfo = getBaseContext().getApplicationInfo();
         applicationInfo.nativeLibraryDir = mLibrarySearchPath;
         applicationInfo.sourceDir = mDexPath;
         return applicationInfo;

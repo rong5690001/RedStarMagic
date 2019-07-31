@@ -123,7 +123,7 @@ public interface HostActivityDelegate {
 
     LayoutInflater getLayoutInflater();
 
-    Resources getResources();
+    Resources getPluginResources();
 
     void onBackPressed();
 

@@ -70,6 +70,7 @@ public class PluginManager {
         }
         packageInfo.applicationInfo.publicSourceDir = apkPath;
         packageInfo.applicationInfo.sourceDir = apkPath;
+
 //        AssetManager am = createAssetManager(apkPath);
 //        Resources resources = createResources(am);
         //优化：不用反射
