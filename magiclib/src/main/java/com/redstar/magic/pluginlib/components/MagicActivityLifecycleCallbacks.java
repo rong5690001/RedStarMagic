@@ -16,12 +16,14 @@
  *
  */
 
-package com.redstar.magic.pluginlib;
+package com.redstar.magic.pluginlib.components;
 
 import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
 
+import com.redstar.magic.pluginlib.components.activity.MagicActivity;
+import com.redstar.magic.pluginlib.components.activity.PluginActivity;
 import com.redstar.magic.pluginlib.proxy.PluginProxyActivity;
 
 
@@ -122,7 +124,7 @@ public interface MagicActivityLifecycleCallbacks {
          * @return 是否属于当前Application所在的插件 true属于
          */
         private boolean checkOwnerActivity(PluginActivity activity) {
-            return activity != null && activity.mPluginApplication == shadowApplication;
+            return activity != null && activity.getPluginApplication() == shadowApplication;
         }
     }
 }

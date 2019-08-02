@@ -29,7 +29,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.TypedValue;
 
-import com.redstar.magic.pluginlib.ResourcesWrapper;
+import com.redstar.magic.pluginlib.components.ResourcesWrapper;
 
 import java.io.InputStream;
 

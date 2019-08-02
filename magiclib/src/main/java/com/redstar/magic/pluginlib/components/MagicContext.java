@@ -16,7 +16,7 @@
  *
  */
 
-package com.redstar.magic.pluginlib;
+package com.redstar.magic.pluginlib.components;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -29,6 +29,7 @@ import android.text.TextUtils;
 import android.util.Pair;
 import android.view.LayoutInflater;
 
+import com.redstar.magic.pluginlib.IPluginComponentLauncher;
 import com.redstar.magic.pluginlib.proxy.IProxyActivity;
 import com.redstar.magic.pluginlib.proxy.MixResources;
 
@@ -39,14 +40,14 @@ import com.redstar.magic.pluginlib.proxy.MixResources;
  * author:chen.huarong
  */
 public class MagicContext extends PluginDirContextThemeWrapper {
-    IPluginComponentLauncher mPluginComponentLauncher;
-    ClassLoader mPluginClassLoader;
-    MagicApplication mShadowApplication;
-    Resources mPluginResources;
-    Resources mMixResources;
-    LayoutInflater mLayoutInflater;
-    String mLibrarySearchPath;
-    String mDexPath;
+    protected IPluginComponentLauncher mPluginComponentLauncher;
+    protected ClassLoader mPluginClassLoader;
+    protected MagicApplication mShadowApplication;
+    protected Resources mPluginResources;
+    protected Resources mMixResources;
+    protected LayoutInflater mLayoutInflater;
+    protected String mLibrarySearchPath;
+    protected String mDexPath;
     protected String mPartKey;
     private String mPluginName;
 //    private ShadowRemoteViewCreatorProvider mRemoteViewCreatorProvider;

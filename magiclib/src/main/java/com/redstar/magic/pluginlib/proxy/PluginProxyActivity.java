@@ -87,7 +87,7 @@ import android.view.WindowManager;
 import android.view.accessibility.AccessibilityEvent;
 import android.widget.Toolbar;
 
-import com.redstar.magic.pluginlib.MagicActivity;
+import com.redstar.magic.pluginlib.components.activity.MagicActivity;
 import com.redstar.magic.pluginlib.MagicActivityDelegate;
 
 import java.io.File;

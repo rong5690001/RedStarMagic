@@ -1,0 +1,1 @@
+package com.redstar.magic.pluginlib.components.activity;import android.app.Activity;/** * Created by chen.huarong on 2019-08-01. * 与插件框架中插件Actvity父类同名的类 */public class MagicActivity extends Activity {}

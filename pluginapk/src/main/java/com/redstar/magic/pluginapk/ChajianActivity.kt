@@ -3,7 +3,7 @@ package com.redstar.magic.pluginapk
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
-import com.redstar.magic.pluginlib.MagicActivity
+import com.redstar.magic.pluginlib.components.activity.MagicActivity
 import kotlinx.android.synthetic.main.activity_chajian.*
 
 class ChajianActivity : MagicActivity() {
@@ -13,7 +13,7 @@ class ChajianActivity : MagicActivity() {
         setContentView(R.layout.activity_chajian)
         //启动插件内部Activity
         btnLaunchPluginActivity.setOnClickListener {
-            startActivity(Intent(this@ChajianActivity, PluginInternalActivity::class.java))
+            startActivity(Intent(this@ChajianActivity, PluginLifeCycleActivity::class.java))
         }
         //显示弹窗
         btnShowDialog.setOnClickListener {
@@ -27,5 +27,10 @@ class ChajianActivity : MagicActivity() {
                         dialog.dismiss()
                     }.show()
         }
+        //dataBinding测试
+        btnDataBinding.setOnClickListener {
+            startActivity(Intent(this@ChajianActivity, DatabindingActivity::class.java))
+        }
     }
+
 }

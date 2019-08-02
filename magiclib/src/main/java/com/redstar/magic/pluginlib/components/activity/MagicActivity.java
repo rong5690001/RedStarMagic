@@ -16,7 +16,7 @@
  *
  */
 
-package com.redstar.magic.pluginlib;
+package com.redstar.magic.pluginlib.components.activity;
 
 import android.app.ActionBar;
 import android.app.SharedElementCallback;

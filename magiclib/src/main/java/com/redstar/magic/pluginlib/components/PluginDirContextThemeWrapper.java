@@ -16,7 +16,7 @@
  *
  */
 
-package com.redstar.magic.pluginlib;
+package com.redstar.magic.pluginlib.components;
 
 import android.app.Activity;
 import android.content.Context;

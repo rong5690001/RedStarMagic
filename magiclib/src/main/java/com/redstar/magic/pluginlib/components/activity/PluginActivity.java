@@ -16,7 +16,7 @@
  *
  */
 
-package com.redstar.magic.pluginlib;
+package com.redstar.magic.pluginlib.components.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -42,11 +42,14 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.accessibility.AccessibilityEvent;
 
+import com.redstar.magic.pluginlib.components.MagicApplication;
+import com.redstar.magic.pluginlib.components.MagicContext;
 import com.redstar.magic.pluginlib.proxy.IProxyActivity;
 
 import java.util.List;
 
 public abstract class PluginActivity extends MagicContext implements Window.Callback{
+
     IProxyActivity mHostActivityDelegator;
 
     MagicApplication mPluginApplication;
@@ -61,6 +64,10 @@ public abstract class PluginActivity extends MagicContext implements Window.Call
 
     public void setPluginApplication(MagicApplication pluginApplication) {
         mPluginApplication = pluginApplication;
+    }
+
+    public MagicApplication getPluginApplication() {
+        return mPluginApplication;
     }
 
     @SuppressLint("MissingSuperCall")

@@ -2,13 +2,15 @@ package com.redstar.magic;
 
 import android.app.Activity;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.redstar.magic.pluginlib.MagicPlugin;
 import com.redstar.magic.pluginlib.PluginManager;
-import com.redstar.magic.pluginlib.utils.FileUtils;
 
 
 public class MainActivity extends Activity {
@@ -43,5 +45,16 @@ public class MainActivity extends Activity {
                 MagicPlugin.startActivity(MainActivity.this, "plugin", intent);
             }
         });
+
+
+//        String aaa = new String();
+//        Log.v("sdfddd", "1  "+aaa.getClass().getClassLoader().toString());
+//        View v = new View(this);
+//        Log.v("sdfddd", "2  "+v.getClass().getClassLoader().toString());
+//        PackageManager pm=getPackageManager();
+//        Log.v("sdfddd", "3  "+pm.getClass().getClassLoader().toString());
+//        Log.v("sdfddd", "4 "+this.getClass().getClassLoader().toString());
+//        Context ss=this.getBaseContext();
+//        Log.v("sdfddd", "5  "+ss.getClass().getClassLoader().toString());
     }
 }

@@ -1,1 +1,0 @@
-package com.redstar.magic.pluginapkimport android.os.Bundleimport com.redstar.magic.pluginlib.MagicActivityclass PluginInternalActivity : MagicActivity() {    override fun onCreate(savedInstanceState: Bundle?) {        super.onCreate(savedInstanceState)        setContentView(R.layout.activity_plugin_internal)    }}

@@ -16,7 +16,7 @@
  *
  */
 
-package com.redstar.magic.pluginlib;
+package com.redstar.magic.pluginlib.components;
 
 import android.annotation.TargetApi;
 import android.content.res.AssetFileDescriptor;
