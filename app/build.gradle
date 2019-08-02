@@ -28,3 +28,27 @@ dependencies {
     implementation project(path: ':manager')
     implementation project(path: ':magiclib')
 }
+
+afterEvaluate {
+    tasks.matching {
+        it.name == 'mergeDebugAssets'
+    }.each { task ->
+        task.dependsOn(deletePluginApk)
+        task.dependsOn(':pluginapk:assembleDebug')
+    }
+}
+
+task deletePluginApk{
+    delete(new File(project.getRootProject().getProjectDir(), 'app/src/main/assets/plugin.apk').absolutePath)
+}
+
+//task fetchPluginAndInstallApp {
+//    group 'test111'
+//    println('test')
+//}
+//
+//task testTask {
+//    group 'test111'
+//    fetchPluginAndInstallApp
+//    clean
+//}

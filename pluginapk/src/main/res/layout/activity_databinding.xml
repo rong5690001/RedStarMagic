@@ -24,7 +24,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:text="databinding Activity"
+            android:text="databinding Activity。。。"
             android:textColor="@{viewModel.textColor}"
             android:textSize="20sp"
             bind:layout_constraintBottom_toBottomOf="parent"

@@ -50,6 +50,8 @@ dependencies {
 }
 
 task copyPluginApk(type: Copy) {
+//    println('> Task :pluginapk:copyPluginApk')
+    group 'myTask'
     from "build/outputs/apk/debug/pluginapk-debug.apk"
     into '../app/src/main/assets'
     rename { String fileName ->
@@ -58,11 +60,37 @@ task copyPluginApk(type: Copy) {
 }
 
 afterEvaluate {
+    println("-------------------------afterEvaluate---------------------------")
     tasks.matching {
         // 以process开头以ReleaseJavaRes或DebugJavaRes结尾的task
-        it.name.startsWith('process') && (it.name.endsWith('ReleaseJavaRes') || it.name.endsWith
-                ('DebugJavaRes'))
+//        it.name.startsWith('pluginapk') && (it.name.endsWith('assembleDebug') || it.name.endsWith
+//                ('assembleRelease'))
+        it.name == 'assembleDebug'
     }.each { task ->
-        task.dependsOn(copyPluginApk)  // 任务依赖：执行task之前需要执行dependsOn指定的任务
+        task.doLast {
+            copy {
+//    println('> Task :pluginapk:copyPluginApk')
+                from new File(project.getBuildDir(), 'outputs/apk/debug/pluginapk-debug.apk').absolutePath
+                into new File(project.getRootProject().getProjectDir(), 'app/src/main/assets')
+                rename { String fileName ->
+                    fileName = "plugin.apk"
+                }
+//            thisObject copyPluginApk
+            } // 任务依赖：执行task之后需要执行dependsOn指定的任务
+        }
     }
 }
+
+//project.afterEvaluate {
+//    project.tasks.each {
+//        if (it.name == "assembleDebug") {
+//            it.doLast {
+//                copy {
+//                    from new File(project.getBuildDir(), 'outputs/apk/debug/plugin-debug.apk').absolutePath
+//                    into new File(project.getRootProject().getProjectDir(), 'app/src/main/assets')
+//                    rename 'plugin-debug.apk', 'plugin.apk'
+//                }
+//            }
+//        }
+//    }
+//}
