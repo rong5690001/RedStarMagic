@@ -1,1 +1,1 @@
-include ':app', ':manager', ':pluginapk', ':magiclib'
+include ':app', ':manager', ':pluginapk', ':magiclib', 'bytecodehelper'

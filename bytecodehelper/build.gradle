@@ -1,0 +1,36 @@
+
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+
+
+dependencies {
+
+    compile 'org.javassist:javassist:3.22.0-GA'
+
+    compile "com.android.tools.build:gradle:3.4.0"
+
+    // gradle sdk
+    compile gradleApi()
+    // groovy sdk
+    compile localGroovy()
+
+}
+
+compileGroovy {
+    targetCompatibility = JavaVersion.VERSION_1_7
+    sourceCompatibility = JavaVersion.VERSION_1_7
+    options.encoding = "UTF-8"
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            //本地的Maven地址
+            repository(url: uri('D:/locmaven/'))
+        }
+    }
+}
+
+group='com.redstar.bytecode'
+version='1.0.0'

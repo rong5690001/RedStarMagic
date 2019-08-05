@@ -52,3 +52,5 @@ task deletePluginApk{
 //    fetchPluginAndInstallApp
 //    clean
 //}
+
+//apply plugin: 'bytecodehelper'//必须加在最后
