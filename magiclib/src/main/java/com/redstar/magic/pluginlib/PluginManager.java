@@ -14,8 +14,6 @@ import com.redstar.magic.pluginlib.utils.FileUtils;
 import java.io.File;
 import java.lang.reflect.Method;
 
-import dalvik.system.DexClassLoader;
-
 public class PluginManager {
 
     private static final String TAG = PluginManager.class.getSimpleName();
@@ -33,10 +31,16 @@ public class PluginManager {
     private PluginApk mPluginApk;
     private InstalledApk mInstalledApk;
     private IPluginComponentLauncher mComponentLauncher;
+    private ClassLoaderProducer classLoadProducer;
 
     public void init(Context context) {
         mContext = context.getApplicationContext();
         mComponentLauncher = new PluginComponentLauncher();
+        classLoadProducer=new DefaultClassLoaderProducer();
+    }
+
+    public void setClassLoadProducer(ClassLoaderProducer classLoadProducer) {
+        this.classLoadProducer = classLoadProducer;
     }
 
     /**
@@ -101,7 +105,8 @@ public class PluginManager {
      */
     private ClassLoader createDexClassLoader(InstalledApk apk) {
 //        File file = mContext.getDir("dex", Context.MODE_PRIVATE);
-        return new DexClassLoader(apk.apkFilePath, apk.oDexPath, null, mContext.getClassLoader());
+        return classLoadProducer.createClassLoader(apk.apkFilePath, apk.oDexPath, null, mContext.getClassLoader());
+
 //        return new ApkClassLoader(apk, mContext.getClassLoader(), null, 1);
     }
 
