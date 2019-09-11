@@ -5,7 +5,9 @@ import com.android.build.api.transform.Transform;
 import com.android.build.api.transform.TransformException;
 import com.android.build.api.transform.TransformInvocation;
 import com.android.build.gradle.internal.pipeline.TransformManager;
+
 import org.gradle.api.Project;
+
 import java.io.IOException;
 import java.util.Set;
 
@@ -46,25 +48,41 @@ public abstract class AbsTransform extends Transform {
     public void transform(TransformInvocation transformInvocation) throws TransformException, InterruptedException, IOException {
         super.transform(transformInvocation);
 
-        transformStart(transformInvocation);
-        transformOnInput(transformInvocation);
-        transformDo();
         try {
 
-                transformOnOutput(transformInvocation);
+            transformStart(transformInvocation);
 
         } catch (NotFoundException e) {
+
             e.printStackTrace();
             throw new IOException(e.getMessage());
-        }catch (CannotCompileException e){
-            e.printStackTrace();
-            throw  new IOException(e.getMessage());
+
         }
+
+        transformOnInput(transformInvocation);
+        transformDo();
+
+        try {
+
+            transformOnOutput(transformInvocation);
+
+        } catch (NotFoundException e) {
+
+            e.printStackTrace();
+            throw new IOException(e.getMessage());
+
+        } catch (CannotCompileException e) {
+
+            e.printStackTrace();
+            throw new IOException(e.getMessage());
+
+        }
+
         transformEnd(transformInvocation);
 
     }
 
-    protected abstract void transformStart(TransformInvocation transformInvocation)throws IOException;
+    protected abstract void transformStart(TransformInvocation transformInvocation) throws IOException, NotFoundException;
 
     protected abstract void transformOnInput(TransformInvocation transformInvocation) throws IOException;
 

@@ -1,8 +1,11 @@
 package com.redstar.bytecode.transform;
 
+
 import com.redstar.bytecode.modifier.AbsModifier;
 import com.redstar.bytecode.modifier.ActivityModifier;
+import com.redstar.bytecode.modifier.RemoveClassModifier;
 import com.redstar.bytecode.modifiermanager.ModifierManager;
+
 import org.gradle.api.Project;
 
 import java.io.File;
@@ -22,7 +25,10 @@ public class DefaultTransform extends ModifierTransform {
 
         ArrayList<AbsModifier> modifiers=new ArrayList();
 
-        modifiers.add(new ActivityModifier());
+        modifiers.add(new ActivityModifier());//修改目标activity
+        modifiers.add(new RemoveClassModifier());//删除指定类
+
+
 
         return new ModifierManager(modifiers);
 

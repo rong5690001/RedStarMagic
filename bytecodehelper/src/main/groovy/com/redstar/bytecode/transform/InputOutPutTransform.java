@@ -9,8 +9,9 @@ import com.android.build.api.transform.TransformInput;
 import com.android.build.api.transform.TransformInvocation;
 import com.android.tools.r8.com.google.common.io.Files;
 import com.android.utils.FileUtils;
-import com.redstar.bytecode.ClassTransformer;
 import com.google.common.collect.FluentIterable;
+import com.redstar.bytecode.ClassTransformer;
+
 import org.gradle.api.Project;
 
 import java.io.DataOutputStream;
@@ -47,7 +48,7 @@ public class InputOutPutTransform extends AbsTransform {
     }
 
     @Override
-    protected void transformStart(TransformInvocation transformInvocation) throws IOException {
+    protected void transformStart(TransformInvocation transformInvocation) throws IOException, NotFoundException {
 
         transformInvocation.getOutputProvider().deleteAll();
         classTransforms.clear();
@@ -55,15 +56,11 @@ public class InputOutPutTransform extends AbsTransform {
 
     }
 
-    private void createClassPool() {
+    private void createClassPool() throws NotFoundException {
 
         classPool =new ClassPool(false);
         classPool.appendClassPath(new LoaderClassPath(contextClassLoader));
-        try {
-            classPool.appendClassPath(androidJar.getAbsolutePath());
-        } catch (NotFoundException e) {
-            e.printStackTrace();
-        }
+        classPool.appendClassPath(androidJar.getAbsolutePath());
 
     }
 
@@ -199,6 +196,21 @@ public class InputOutPutTransform extends AbsTransform {
 
     @Override
     protected void transformEnd(TransformInvocation transformInvocation) {
+
+        /**
+         * 回收内存
+         */
+        for (int i = 0; i < classTransforms.size(); i++) {
+
+            for (int j = 0; j < classTransforms.get(i).getDirs().size(); j++) {
+
+                CtClass ctClass=classTransforms.get(i).getDirs().get(j).getCtClass();
+
+                ctClass.detach();
+
+            }
+
+        }
 
     }
 
