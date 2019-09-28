@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">PluginApk</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="show_dialog">显示弹窗</string>
+    <string name="databinding_test">dataBinding测试</string>
+    <string name="fragment_test">fragment测试</string>
 </resources>

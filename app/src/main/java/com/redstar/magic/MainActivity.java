@@ -2,15 +2,12 @@ package com.redstar.magic;
 
 import android.app.Activity;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.redstar.magic.pluginlib.MagicPlugin;
-import com.redstar.magic.pluginlib.PluginManager;
+import com.redstar.magic.pluginlib.pm.PluginManager;
 
 
 public class MainActivity extends Activity {
@@ -24,12 +21,12 @@ public class MainActivity extends Activity {
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    getCacheDir();
+                try {///data/data/com.redstar.magic/cache
+                    getCacheDir().delete();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-//                String apkPath = FileUtils.copyAssetAndWrite(MainActivity.this, "plugin.apk");
+//                String apkPath = FileUtils.copyAssetToFile(MainActivity.this, "plugin.apk");
 //                // 加载apk
 //                PluginManager.getInstance().loadApk(apkPath);
             }
@@ -42,7 +39,7 @@ public class MainActivity extends Activity {
                 Intent intent = new Intent();
                 intent.setComponent(new ComponentName("com.redstar.magic.pluginapk"
                         , "com.redstar.magic.pluginapk.ChajianActivity"));
-                MagicPlugin.startActivity(MainActivity.this, "plugin", intent);
+                MagicPlugin.startActivity(MainActivity.this, "com.redstar.magic.pluginapk", intent);
             }
         });
 

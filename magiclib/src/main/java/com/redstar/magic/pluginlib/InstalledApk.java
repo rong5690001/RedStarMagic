@@ -3,7 +3,7 @@
  * Copyright (C) 2019 THL A29 Limited, a Tencent company.  All rights reserved.
  *
  * Licensed under the BSD 3-Clause License (the "License"); you may not use
- * this file except in compliance with the License. You may obtain a copy of
+ * this file except in compliance with the License. You may obtain a copyFromAssets of
  * the License at
  *
  *     https://opensource.org/licenses/BSD-3-Clause
@@ -26,13 +26,16 @@ import android.os.Parcelable;
  */
 public class InstalledApk implements Parcelable {
 
-    public final String apkFilePath;
+    public String apkFilePath;
 
-    public final String oDexPath;
+    public String oDexPath;
 
-    public final String libraryPath;
+    public String libraryPath;
 
-    public final byte[] parcelExtras;
+    public byte[] parcelExtras;
+
+    public InstalledApk() {
+    }
 
     public InstalledApk(String apkFilePath, String oDexPath, String libraryPath) {
         this(apkFilePath, oDexPath, libraryPath, null);

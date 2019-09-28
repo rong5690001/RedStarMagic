@@ -3,7 +3,7 @@
  * Copyright (C) 2019 THL A29 Limited, a Tencent company.  All rights reserved.
  *
  * Licensed under the BSD 3-Clause License (the "License"); you may not use
- * this file except in compliance with the License. You may obtain a copy of
+ * this file except in compliance with the License. You may obtain a copyFromAssets of
  * the License at
  *
  *     https://opensource.org/licenses/BSD-3-Clause
@@ -40,24 +40,18 @@ import com.redstar.magic.pluginlib.proxy.MixResources;
  * author:chen.huarong
  */
 public class MagicContext extends PluginDirContextThemeWrapper {
+
     protected IPluginComponentLauncher mPluginComponentLauncher;
     protected ClassLoader mPluginClassLoader;
     protected MagicApplication mShadowApplication;
     protected Resources mPluginResources;
     protected Resources mMixResources;
-    protected LayoutInflater mLayoutInflater;
     protected String mLibrarySearchPath;
     protected String mDexPath;
-    protected String mPartKey;
     private String mPluginName;
-//    private ShadowRemoteViewCreatorProvider mRemoteViewCreatorProvider;
 
     public MagicContext() {
     }
-
-//    public ShadowContext(Context base, int themeResId) {
-//        super(base, themeResId);
-//    }
 
     public final void setPluginResources(Resources resources) {
         mPluginResources = resources;
@@ -70,31 +64,6 @@ public class MagicContext extends PluginDirContextThemeWrapper {
     public void setPluginComponentLauncher(IPluginComponentLauncher pluginComponentLauncher) {
         mPluginComponentLauncher = pluginComponentLauncher;
     }
-
-    public void setShadowApplication(MagicApplication shadowApplication) {
-        mShadowApplication = shadowApplication;
-    }
-
-    public void setLibrarySearchPath(String mLibrarySearchPath) {
-        this.mLibrarySearchPath = mLibrarySearchPath;
-    }
-
-    public void setDexPath(String dexPath) {
-        mDexPath = dexPath;
-    }
-
-    public void setPluginPartKey(String partKey) {
-        this.mPartKey = partKey;
-    }
-
-//    public final void setRemoteViewCreatorProvider(ShadowRemoteViewCreatorProvider provider) {
-//        mRemoteViewCreatorProvider = provider;
-//    }
-//
-//    public final ShadowRemoteViewCreatorProvider getRemoteViewCreatorProvider() {
-//        return mRemoteViewCreatorProvider;
-//    }
-
 
     public void setPluginName(String pluginName) {
         mPluginName = pluginName;
@@ -115,7 +84,7 @@ public class MagicContext extends PluginDirContextThemeWrapper {
             } else {
                 hostResources = baseContext.getResources();
             }
-            mMixResources = new MixResources(hostResources, mPluginResources);
+            mMixResources = new MixResources(hostResources, mPluginResources, getPackageName());
         }
         return mMixResources;
     }
@@ -129,12 +98,12 @@ public class MagicContext extends PluginDirContextThemeWrapper {
     public Object getSystemService(String name) {
 //        if (LAYOUT_INFLATER_SERVICE.equals(name)) {
 //            if (mLayoutInflater == null) {
-//                LayoutInflater inflater = (LayoutInflater) getBaseContext().getSystemService(name);
+//                LayoutInflater inflater = (LayoutInflater) super.getSystemService(name);
 //                mLayoutInflater = ShadowLayoutInflater.build(inflater, this, mPartKey);
 //            }
 //            return mLayoutInflater;
 //        }
-        return getBaseContext().getSystemService(name);
+        return super.getSystemService(name);
     }
 
     @Override
@@ -148,57 +117,57 @@ public class MagicContext extends PluginDirContextThemeWrapper {
         pluginIntent.setExtrasClassLoader(mPluginClassLoader);
         final boolean success = mPluginComponentLauncher.startActivity(this, pluginIntent);
         if (!success) {
-            getBaseContext().startActivity(intent);
+            super.startActivity(intent);
         }
     }
 
     public void superStartActivity(Intent intent) {
-        getBaseContext().startActivity(intent);
+        super.startActivity(intent);
     }
 
     @Override
     public void unbindService(ServiceConnection conn) {
         if (!mPluginComponentLauncher.unbindService(this, conn).first)
-            getBaseContext().unbindService(conn);
+            super.unbindService(conn);
     }
 
     @Override
     public boolean bindService(Intent service, ServiceConnection conn, int flags) {
         if (service.getComponent() == null) {
-            return getBaseContext().bindService(service, conn, flags);
+            return super.bindService(service, conn, flags);
         }
         Pair<Boolean, Boolean> ret = mPluginComponentLauncher.bindService(this, service, conn,
                 flags);
         if (!ret.first)
-            return getBaseContext().bindService(service, conn, flags);
+            return super.bindService(service, conn, flags);
         return ret.second;
     }
 
     @Override
     public boolean stopService(Intent name) {
         if (name.getComponent() == null) {
-            return getBaseContext().stopService(name);
+            return super.stopService(name);
         }
         Pair<Boolean, Boolean> ret = mPluginComponentLauncher.stopService(this, name);
         if (!ret.first)
-            return getBaseContext().stopService(name);
+            return super.stopService(name);
         return ret.second;
     }
 
     @Override
     public ComponentName startService(Intent service) {
         if (service.getComponent() == null) {
-            return getBaseContext().startService(service);
+            return super.startService(service);
         }
         Pair<Boolean, ComponentName> ret = mPluginComponentLauncher.startService(this, service);
         if (!ret.first)
-            return getBaseContext().startService(service);
+            return super.startService(service);
         return ret.second;
     }
 
     @Override
     public ApplicationInfo getApplicationInfo() {
-        final ApplicationInfo applicationInfo = getBaseContext().getApplicationInfo();
+        final ApplicationInfo applicationInfo = super.getApplicationInfo();
         applicationInfo.nativeLibraryDir = mLibrarySearchPath;
         applicationInfo.sourceDir = mDexPath;
         return applicationInfo;
@@ -215,5 +184,10 @@ public class MagicContext extends PluginDirContextThemeWrapper {
         } else {
             return "MagicPlugin_" + mPluginName;
         }
+    }
+
+    @Override
+    public String getPackageName() {
+        return super.getPackageName();
     }
 }

@@ -3,7 +3,7 @@
  * Copyright (C) 2019 THL A29 Limited, a Tencent company.  All rights reserved.
  *
  * Licensed under the BSD 3-Clause License (the "License"); you may not use
- * this file except in compliance with the License. You may obtain a copy of
+ * this file except in compliance with the License. You may obtain a copyFromAssets of
  * the License at
  *
  *     https://opensource.org/licenses/BSD-3-Clause
@@ -24,6 +24,7 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
+import android.media.session.MediaController;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.DragAndDropPermissions;
@@ -235,13 +236,13 @@ public abstract class MagicActivity extends PluginActivity {
         return mHostActivityDelegator.shouldShowRequestPermissionRationale(permission);
     }
 
-//    public final void setMediaController(MediaController controller) {
-//        mHostActivityDelegator.setMediaController(controller);
-//    }
-//
-//    public final MediaController getMediaController() {
-//        return mHostActivityDelegator.getMediaController();
-//    }
+    public final void setMediaController(MediaController controller) {
+        mHostActivityDelegator.setMediaController(controller);
+    }
+
+    public final MediaController getMediaController() {
+        return mHostActivityDelegator.getMediaController();
+    }
 
     public boolean shouldUpRecreateTask(Intent targetIntent) {
         Intent intent = mPluginComponentLauncher.convertPluginActivityIntent(targetIntent);
@@ -313,13 +314,13 @@ public abstract class MagicActivity extends PluginActivity {
         return mHostActivityDelegator.getCallingActivity();
     }
 
-//    public final void setVolumeControlStream(int streamType) {
-//        mHostActivityDelegator.setVolumeControlStream(streamType);
-//    }
-//
-//    public final int getVolumeControlStream() {
-//        return mHostActivityDelegator.getVolumeControlStream();
-//    }
+    public final void setVolumeControlStream(int streamType) {
+        mHostActivityDelegator.setVolumeControlStream(streamType);
+    }
+
+    public final int getVolumeControlStream() {
+        return mHostActivityDelegator.getVolumeControlStream();
+    }
 
     public boolean isInMultiWindowMode() {
         return mHostActivityDelegator.isInMultiWindowMode();

@@ -2,7 +2,7 @@ package com.redstar.magic.pluginlib;
 
 import dalvik.system.DexClassLoader;
 
-public class WhiteListClassLoaderProducer extends ClassLoaderProducer {
+public class WhiteListClassLoaderProducer implements ClassLoaderProducer {
     @Override
     public ClassLoader createClassLoader(String dexPath, String optimizedDirectory, String librarySearchPath, ClassLoader parent) {
         return new WhiteListClassLoader(dexPath,optimizedDirectory,librarySearchPath,parent);

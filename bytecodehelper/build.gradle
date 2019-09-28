@@ -6,9 +6,9 @@ apply plugin: 'maven'
 
 dependencies {
 
-    compile 'org.javassist:javassist:3.22.0-GA'
+    compile 'org.javassist:javassist:3.25.0-GA'
 
-    compile "com.android.tools.build:gradle:3.4.0"
+    compile 'com.android.tools.build:gradle:3.5.0'
 
     // gradle sdk
     compile gradleApi()
@@ -27,7 +27,7 @@ uploadArchives {
     repositories {
         mavenDeployer {
             //本地的Maven地址
-            repository(url: uri('D:/locmaven/'))
+            repository(url: uri('/Users/workspace/locmaven'))
         }
     }
 }

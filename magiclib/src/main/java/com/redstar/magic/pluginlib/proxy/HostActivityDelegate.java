@@ -3,7 +3,7 @@
  * Copyright (C) 2019 THL A29 Limited, a Tencent company.  All rights reserved.
  *
  * Licensed under the BSD 3-Clause License (the "License"); you may not use
- * this file except in compliance with the License. You may obtain a copy of
+ * this file except in compliance with the License. You may obtain a copyFromAssets of
  * the License at
  *
  *     https://opensource.org/licenses/BSD-3-Clause
@@ -37,6 +37,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.redstar.magic.pluginlib.components.activity.PluginActivity;
+
 /**
  * HostActivity的被委托者接口
  * <p>
@@ -47,7 +49,7 @@ import android.view.WindowManager;
 public interface HostActivityDelegate {
     void setDelegator(IProxyActivity delegator);
 
-    Object getPluginActivity();
+    PluginActivity getPluginActivity();
 
     void onCreate(Bundle savedInstanceState);
 

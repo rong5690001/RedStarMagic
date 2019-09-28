@@ -3,7 +3,7 @@
  * Copyright (C) 2019 THL A29 Limited, a Tencent company.  All rights reserved.
  *
  * Licensed under the BSD 3-Clause License (the "License"); you may not use
- * this file except in compliance with the License. You may obtain a copy of
+ * this file except in compliance with the License. You may obtain a copyFromAssets of
  * the License at
  *
  *     https://opensource.org/licenses/BSD-3-Clause
@@ -33,6 +33,7 @@ import android.util.AttributeSet;
 import android.view.ActionMode;
 import android.view.KeyEvent;
 import android.view.KeyboardShortcutGroup;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -155,9 +156,9 @@ public abstract class PluginActivity extends MagicContext implements Window.Call
         return mHostActivityDelegator.superOnCreateDescription();
     }
 
-//    public Object onRetainNonConfigurationInstance() {
-//        return mHostActivityDelegator.superOnRetainNonConfigurationInstance();
-//    }
+    public Object onRetainNonConfigurationInstance() {
+        return mHostActivityDelegator.superOnRetainNonConfigurationInstance();
+    }
 
     public void onLowMemory() {
         mHostActivityDelegator.superOnLowMemory();
@@ -223,10 +224,11 @@ public abstract class PluginActivity extends MagicContext implements Window.Call
         mHostActivityDelegator.superStartActivityFromChild(child, intent, requestCode);
     }
 
-//    public LayoutInflater getLayoutInflater() {
+    public LayoutInflater getLayoutInflater() {
+        return mHostActivityDelegator.getWindow().getLayoutInflater();
 //        LayoutInflater inflater = mHostActivityDelegator.getWindow().getLayoutInflater();
 //        return ShadowLayoutInflater.build(inflater, this, mPartKey);
-//    }
+    }
 
     public void onBackPressed() {
         mHostActivityDelegator.superOnBackPressed();
@@ -345,5 +347,10 @@ public abstract class PluginActivity extends MagicContext implements Window.Call
 
     public void onMultiWindowModeChanged(boolean isInMultiWindowMode, Configuration newConfig) {
         mHostActivityDelegator.superOnMultiWindowModeChanged(isInMultiWindowMode, newConfig);
+    }
+
+    @Deprecated
+    public android.app.FragmentManager getFragmentManager() {
+        return mHostActivityDelegator.superGetFragmentManager();
     }
 }
