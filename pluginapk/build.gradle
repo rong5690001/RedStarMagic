@@ -2,12 +2,14 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+def packName = "com.redstar.magic.pluginapk"
+
 android {
     compileSdkVersion 28
 
 
     defaultConfig {
-        applicationId "chajian.ne.com.pluginapk"
+        applicationId packName
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
@@ -54,9 +56,9 @@ task copyPluginApk(type: Copy) {
 //    println('> Task :pluginapk:copyPluginApk')
     group 'myTask'
     from "build/outputs/apk/debug/pluginapk-debug.apk"
-    into '../app/src/main/assets'
+    into '../app/src/main/assets/plugins'
     rename { String fileName ->
-        fileName = "plugin.apk"
+        fileName = "${packName}.apk"
     }
 }
 
@@ -72,9 +74,9 @@ afterEvaluate {
             copy {
 //    println('> Task :pluginapk:copyPluginApk')
                 from new File(project.getBuildDir(), 'outputs/apk/debug/pluginapk-debug.apk').absolutePath
-                into new File(project.getRootProject().getProjectDir(), 'app/src/main/assets')
+                into new File(project.getRootProject().getProjectDir(), 'app/src/main/assets/plugins')
                 rename { String fileName ->
-                    fileName = "plugin.apk"
+                    fileName = "${packName}.apk"
                 }
 //            thisObject copyPluginApk
             } // 任务依赖：执行task之后需要执行dependsOn指定的任务

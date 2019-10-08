@@ -16,7 +16,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        PluginManager.getInstance().init(this);
+        MagicPlugin.install(this);
 
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,7 +39,7 @@ public class MainActivity extends Activity {
                 Intent intent = new Intent();
                 intent.setComponent(new ComponentName("com.redstar.magic.pluginapk"
                         , "com.redstar.magic.pluginapk.ChajianActivity"));
-                MagicPlugin.startActivity(MainActivity.this, "com.redstar.magic.pluginapk", intent);
+                MagicPlugin.startActivity2(MainActivity.this, "com.redstar.magic.pluginapk", intent);
             }
         });
 
