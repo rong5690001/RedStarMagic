@@ -22,51 +22,39 @@ public class ByteCode implements Plugin<Project> {
         DefaultTransform transform=new DefaultTransform(project,androidJar,contextClassLoader)
         plugin.extension.registerTransform(transform)
 
-        //settingTask(project)先不考虑加入task控制流程了
+        settingTask(project)
 
-    }
-
-    ClassPool createClassPool(AppPlugin plugin){
-        System.out.println("创建classpool")
-        File sdkDirectory = plugin.extension.sdkDirectory
-        String androidJarPath = "platforms/${plugin.extension.compileSdkVersion}/android.jar"
-        File androidJar = new File(sdkDirectory, androidJarPath)
-        ClassLoader contextClassLoader = Thread.currentThread().contextClassLoader
-        ClassPool pool=new ClassPool(false)
-        pool.appendClassPath(new LoaderClassPath(contextClassLoader))
-        pool.appendClassPath(androidJar.getAbsolutePath())
-        return pool
     }
 
     void settingTask(Project project){
 
-        InitConfigurationsExtensions ex=project.extensions.create("bytecodechange", InitConfigurationsExtensions.class)
-
-        System.out.println("ex输出:"+ex.testString)
+        InitConfigurationsExtensions ex=project.extensions.create("easyplugin", InitConfigurationsExtensions.class)
 
         project.afterEvaluate {
 
-            InitConfigurationsExtensions initConfigurationsExtensions = project.extensions.findByName("bytecodechange")
+            InitConfigurationsExtensions initConfigurationsExtensions = project.extensions.findByName("easyplugin")
 
-            if(initConfigurationsExtensions.enable){
+            project.android.applicationVariants.all { variant ->
 
-                project.android.applicationVariants.all { variant ->
+                def variantName = variant.name.capitalize()
 
-                    def variantName = variant.name.capitalize()
+                System.out.println("创建task${variantName}")
 
-                    System.out.println("创建task${variantName}")
+                PackagesTask bytecodeTask = project.task("produce${variantName}", type:PackagesTask){
+                    mVariant = variant
+                    dependsOn variant.assembleProvider
+                }
 
-                    Task bytecodeTask = project.task("btyecode${variantName}", type:TestTask){
+                bytecodeTask.doFirst {
+                    pluginVersion=initConfigurationsExtensions.pluginVersion
+                    pluginApkVersion=initConfigurationsExtensions.pluginApkVersion
+                }
 
-                        deftf.test=initConfigurationsExtensions.testString
-                        finalizedBy variant.assembleProvider
-
-                    }
-
-                    bytecodeTask.setGroup("bytecode")
+                bytecodeTask.doLast {
 
                 }
 
+                bytecodeTask.setGroup("easyplugin")
 
             }
 
