@@ -53,4 +53,9 @@ task deletePluginApk{
 //    clean
 //}
 
-//apply plugin: 'bytecodehelper'//必须加在最后
+/*
+apply plugin: 'bytecodehelper'//必须加在最后
+easyplugin{
+    pluginVersion='1.0.0'
+    pluginApkVersion='1.0.0'
+}*/
