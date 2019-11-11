@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.redstar.magic.pluginlib.MagicPlugin;
-import com.redstar.magic.pluginlib.pm.PluginManager;
 
 
 public class MainActivity extends Activity {
@@ -17,7 +16,6 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         MagicPlugin.install(this);
-
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

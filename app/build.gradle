@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 
+def HOST_VERSION = 1
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -8,6 +10,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+        buildConfigField("int", "HOST_VERSION", "1")
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
