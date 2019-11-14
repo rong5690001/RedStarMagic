@@ -24,7 +24,7 @@ import android.os.Bundle;
 
 import com.redstar.magic.pluginlib.components.activity.MagicActivity;
 import com.redstar.magic.pluginlib.components.activity.PluginActivity;
-import com.redstar.magic.pluginlib.proxy.PluginProxyActivity;
+import com.redstar.magic.pluginlib.proxy.activity.PluginProxyActivity;
 
 
 public interface MagicActivityLifecycleCallbacks {

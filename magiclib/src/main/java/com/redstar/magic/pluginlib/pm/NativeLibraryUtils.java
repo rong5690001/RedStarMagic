@@ -19,6 +19,7 @@ package com.redstar.magic.pluginlib.pm;
 
 import android.os.Build;
 
+import com.redstar.magic.pluginlib.exception.CopyNativeSoException;
 import com.redstar.magic.pluginlib.tools.Logger;
 import com.redstar.magic.pluginlib.utils.FileUtils;
 

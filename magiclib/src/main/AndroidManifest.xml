@@ -1,2 +1,534 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.redstar.magic.pluginlib" />
+    package="com.redstar.magic.pluginlib">
+
+    <application>
+        <activity android:name="com.redstar.magic.pluginlib.proxy.activity.PluginProxyActivity" />
+
+        <activity android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxyTranslucent" />
+        <!--  singleTop 50个坑位 -->
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop0"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop1"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop2"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop3"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop4"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop5"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop6"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop7"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop8"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop9"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop10"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop11"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop12"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop13"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop14"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop15"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop16"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop17"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop18"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop19"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop20"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop21"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop22"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop23"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop24"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop25"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop26"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop27"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop28"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop29"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop30"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop31"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop32"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop33"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop34"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop35"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop36"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop37"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop38"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop39"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop40"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop41"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop42"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop43"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop44"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop45"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop46"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop47"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop48"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTop49"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
+
+        <!--  singleTask 50个坑位 -->
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask0"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask1"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask2"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask3"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask4"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask5"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask6"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask7"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask8"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask9"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask10"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask11"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask12"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask13"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask14"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask15"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask16"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask17"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask18"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask19"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask20"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask21"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask22"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask23"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask24"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask25"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask26"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask27"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask28"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask29"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask30"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask31"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask32"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask33"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask34"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask35"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask36"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask37"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask38"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask39"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask40"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask41"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask42"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask43"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask44"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask45"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask46"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask47"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask48"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleTask49"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+
+        <!--  singleInstance 30个坑位 -->
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleInstance0"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleInstance1"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleInstance2"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleInstance3"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleInstance4"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleInstance5"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleInstance6"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleInstance7"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleInstance8"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleInstance9"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleInstance10"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleInstance11"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleInstance12"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleInstance13"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleInstance14"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleInstance15"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleInstance16"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleInstance17"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleInstance18"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleInstance19"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleInstance20"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleInstance21"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleInstance22"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleInstance23"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleInstance24"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleInstance25"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleInstance26"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleInstance27"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleInstance28"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleInstance29"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleInstance" />
+    </application>
+
+</manifest>

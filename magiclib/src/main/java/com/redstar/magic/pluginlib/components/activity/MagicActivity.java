@@ -36,8 +36,16 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.redstar.magic.pluginlib.exception.PluginNotInstalled;
 import com.redstar.magic.pluginlib.utils.FileUtils;
 
+/**
+ * 插件activity的父类
+ * <p>
+ * 负责将插件activity的方法转交由{@link com.redstar.magic.pluginlib.proxy.activity.PluginProxyActivity}处理
+ *
+ * @author chen.huarong on 2019-11-12
+ */
 public abstract class MagicActivity extends PluginActivity {
 
 //    private int mFragmentManagerHash;
@@ -45,7 +53,8 @@ public abstract class MagicActivity extends PluginActivity {
 //    private PluginFragmentManager mPluginFragmentManager;
 
     public void setContentView(int layoutResID) {
-        if ("merge".equals(FileUtils.XmlPullParserUtil.getLayoutStartTagName(getResources(), layoutResID))) {
+        if ("merge".equals(FileUtils.XmlPullParserUtil.getLayoutStartTagName(getResources(),
+                layoutResID))) {
             //如果传进来的xml文件的根tag是merge时，需要特殊处理
             View decorView = mHostActivityDelegator.getWindow().getDecorView();
             ViewGroup viewGroup = decorView.findViewById(android.R.id.content);
@@ -142,7 +151,9 @@ public abstract class MagicActivity extends PluginActivity {
         final Intent pluginIntent = new Intent(intent);
         pluginIntent.setExtrasClassLoader(mPluginClassLoader);
         ComponentName callingActivity = new ComponentName(getPackageName(), getClass().getName());
-        final boolean success = mPluginComponentLauncher.startActivityForResult(mHostActivityDelegator, pluginIntent, requestCode, options, callingActivity);
+        final boolean success =
+                mPluginComponentLauncher.startActivityForResult(mHostActivityDelegator,
+                        pluginIntent, requestCode, options, callingActivity);
         if (!success) {
             mHostActivityDelegator.startActivityForResult(intent, requestCode, options);
         }
@@ -225,7 +236,8 @@ public abstract class MagicActivity extends PluginActivity {
 //    @Deprecated
 //    public final Cursor managedQuery(Uri uri, String[] projection, String selection,
 //                                     String[] selectionArgs, String sortOrder) {
-//        return mHostActivityDelegator.managedQuery(uri, projection, selection, selectionArgs, sortOrder);
+//        return mHostActivityDelegator.managedQuery(uri, projection, selection, selectionArgs,
+//        sortOrder);
 //    }
 
     public ComponentName getComponentName() {
@@ -245,13 +257,25 @@ public abstract class MagicActivity extends PluginActivity {
     }
 
     public boolean shouldUpRecreateTask(Intent targetIntent) {
-        Intent intent = mPluginComponentLauncher.convertPluginActivityIntent(targetIntent);
-        return mHostActivityDelegator.shouldUpRecreateTask(intent);
+        Intent intent = null;
+        try {
+            intent = mPluginComponentLauncher.convertPluginActivityIntent(targetIntent);
+            return mHostActivityDelegator.shouldUpRecreateTask(intent);
+        } catch (PluginNotInstalled pluginNotInstalled) {
+            pluginNotInstalled.printStackTrace();
+            return false;
+        }
     }
 
     public boolean navigateUpTo(Intent upIntent) {
-        Intent intent = mPluginComponentLauncher.convertPluginActivityIntent(upIntent);
-        return mHostActivityDelegator.navigateUpTo(intent);
+        Intent intent = null;
+        try {
+            intent = mPluginComponentLauncher.convertPluginActivityIntent(upIntent);
+            return mHostActivityDelegator.navigateUpTo(intent);
+        } catch (PluginNotInstalled pluginNotInstalled) {
+            pluginNotInstalled.printStackTrace();
+            return false;
+        }
     }
 
     public Intent getParentActivityIntent() {
@@ -267,15 +291,19 @@ public abstract class MagicActivity extends PluginActivity {
     }
 
     public void startIntentSenderForResult(IntentSender intent, int requestCode,
-                                           Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags)
+                                           Intent fillInIntent, int flagsMask, int flagsValues,
+                                           int extraFlags)
             throws IntentSender.SendIntentException {
-        mHostActivityDelegator.startIntentSenderForResult(intent, requestCode, fillInIntent, flagsMask, flagsValues, extraFlags);
+        mHostActivityDelegator.startIntentSenderForResult(intent, requestCode, fillInIntent,
+                flagsMask, flagsValues, extraFlags);
     }
 
     public void startIntentSenderForResult(IntentSender intent, int requestCode,
-                                           Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags,
+                                           Intent fillInIntent, int flagsMask, int flagsValues,
+                                           int extraFlags,
                                            Bundle options) throws IntentSender.SendIntentException {
-        mHostActivityDelegator.startIntentSenderForResult(intent, requestCode, fillInIntent, flagsMask, flagsValues, extraFlags, options);
+        mHostActivityDelegator.startIntentSenderForResult(intent, requestCode, fillInIntent,
+                flagsMask, flagsValues, extraFlags, options);
     }
 
     public void finishAffinity() {

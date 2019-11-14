@@ -45,13 +45,21 @@ import android.view.accessibility.AccessibilityEvent;
 
 import com.redstar.magic.pluginlib.components.MagicApplication;
 import com.redstar.magic.pluginlib.components.MagicContext;
-import com.redstar.magic.pluginlib.proxy.IProxyActivity;
+import com.redstar.magic.pluginlib.proxy.activity.ProxyActivity;
 
 import java.util.List;
 
-public abstract class PluginActivity extends MagicContext implements Window.Callback{
+/**
+ * 插件activity的父类抽象类
+ * <p>
+ * 封装部分方法
+ * 负责将插件activity的方法转交由{@link com.redstar.magic.pluginlib.proxy.activity.PluginProxyActivity}处理
+ *
+ * @author chen.huarong on 2019-11-12
+ */
+public abstract class PluginActivity extends MagicContext implements Window.Callback {
 
-    IProxyActivity mHostActivityDelegator;
+    ProxyActivity mHostActivityDelegator;
 
     MagicApplication mPluginApplication;
 
@@ -59,7 +67,7 @@ public abstract class PluginActivity extends MagicContext implements Window.Call
         attachBaseContext(context);
     }
 
-    public void setHostActivityDelegator(IProxyActivity delegator) {
+    public void setHostActivityDelegator(ProxyActivity delegator) {
         mHostActivityDelegator = delegator;
     }
 
@@ -247,8 +255,10 @@ public abstract class PluginActivity extends MagicContext implements Window.Call
         mHostActivityDelegator.superOnAttachFragment(fragment);
     }
 
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        mHostActivityDelegator.superOnRequestPermissionsResult(requestCode, permissions, grantResults);
+    public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                                           int[] grantResults) {
+        mHostActivityDelegator.superOnRequestPermissionsResult(requestCode, permissions,
+                grantResults);
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -327,7 +337,8 @@ public abstract class PluginActivity extends MagicContext implements Window.Call
     }
 
     @Override
-    public void onProvideKeyboardShortcuts(List<KeyboardShortcutGroup> data, Menu menu, int deviceId) {
+    public void onProvideKeyboardShortcuts(List<KeyboardShortcutGroup> data, Menu menu,
+                                           int deviceId) {
         mHostActivityDelegator.superOnProvideKeyboardShortcuts(data, menu, deviceId);
     }
 

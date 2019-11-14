@@ -4,6 +4,8 @@ buildscript {
     ext.kotlin_version = '1.3.50'
     repositories {
         google()
+        //阿里镜像
+        maven{url 'http://maven.aliyun.com/nexus/content/groups/public/'}
         jcenter()
         maven {
             url uri('/Users/workspace/locmaven')
@@ -22,6 +24,8 @@ buildscript {
 allprojects {
     repositories {
         google()
+        //阿里镜像
+        maven{url 'http://maven.aliyun.com/nexus/content/groups/public/'}
         jcenter()
 
     }

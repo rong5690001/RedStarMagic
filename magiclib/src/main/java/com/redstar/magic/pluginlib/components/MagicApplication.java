@@ -27,6 +27,9 @@ import android.content.Context;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.os.Build;
+import android.os.Bundle;
+
+import com.redstar.magic.pluginlib.components.activity.MagicActivity;
 
 import java.util.HashMap;
 import java.util.List;
@@ -84,6 +87,8 @@ public abstract class MagicApplication extends MagicContext {
                 MagicApplication.this.onLowMemory();
             }
         });
+
+
     }
 
 

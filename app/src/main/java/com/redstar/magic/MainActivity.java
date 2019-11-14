@@ -37,7 +37,7 @@ public class MainActivity extends Activity {
                 Intent intent = new Intent();
                 intent.setComponent(new ComponentName("com.redstar.magic.pluginapk"
                         , "com.redstar.magic.pluginapk.ChajianActivity"));
-                MagicPlugin.startActivity2(MainActivity.this, "com.redstar.magic.pluginapk", intent);
+                MagicPlugin.startActivity2(MainActivity.this, intent);
             }
         });
 

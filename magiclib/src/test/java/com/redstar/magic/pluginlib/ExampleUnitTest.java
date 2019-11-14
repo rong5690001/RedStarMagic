@@ -1,5 +1,10 @@
 package com.redstar.magic.pluginlib;
 
+import android.content.pm.ActivityInfo;
+
+import com.redstar.magic.pluginlib.exception.ActivityPoolException;
+import com.redstar.magic.pluginlib.pool.ActivityPool;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -14,4 +19,6 @@ public class ExampleUnitTest {
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
     }
+
+
 }

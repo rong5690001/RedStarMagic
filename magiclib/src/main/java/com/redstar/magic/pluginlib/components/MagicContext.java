@@ -27,17 +27,17 @@ import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.text.TextUtils;
 import android.util.Pair;
-import android.view.LayoutInflater;
 
 import com.redstar.magic.pluginlib.IPluginComponentLauncher;
-import com.redstar.magic.pluginlib.proxy.IProxyActivity;
+import com.redstar.magic.pluginlib.proxy.activity.ProxyActivity;
 import com.redstar.magic.pluginlib.proxy.MixResources;
+import com.redstar.magic.pluginlib.utils.IntentUtils;
 
 /**
  * 插件上下文：
  * 1、负责加载资源
  * 2、处理启动组件逻辑
- * author:chen.huarong
+ * @author chen.huarong
  */
 public class MagicContext extends PluginDirContextThemeWrapper {
 
@@ -79,8 +79,8 @@ public class MagicContext extends PluginDirContextThemeWrapper {
         if (mMixResources == null) {
             Context baseContext = getBaseContext();
             Resources hostResources;
-            if (baseContext instanceof IProxyActivity) {
-                hostResources = ((IProxyActivity) baseContext).superGetResources();
+            if (baseContext instanceof ProxyActivity) {
+                hostResources = ((ProxyActivity) baseContext).superGetResources();
             } else {
                 hostResources = baseContext.getResources();
             }
@@ -115,7 +115,7 @@ public class MagicContext extends PluginDirContextThemeWrapper {
     public void startActivity(Intent intent) {
         final Intent pluginIntent = new Intent(intent);
         pluginIntent.setExtrasClassLoader(mPluginClassLoader);
-        final boolean success = mPluginComponentLauncher.startActivity(this, pluginIntent);
+        final boolean success = IntentUtils.startActivity(this, pluginIntent);
         if (!success) {
             super.startActivity(intent);
         }
@@ -188,6 +188,6 @@ public class MagicContext extends PluginDirContextThemeWrapper {
 
     @Override
     public String getPackageName() {
-        return super.getPackageName();
+        return mPluginName;
     }
 }

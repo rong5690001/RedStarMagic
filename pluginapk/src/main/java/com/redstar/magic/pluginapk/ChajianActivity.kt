@@ -11,14 +11,17 @@ class ChajianActivity : MagicActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chajian)
-
     }
 
     override fun onClick(v: View?) {
         when (v!!.id) {
-            //启动插件内部Activity
-            R.id.btnLaunchPluginActivity -> {
-                startActivity(Intent(this@ChajianActivity, PluginLifeCycleActivity::class.java))
+            //activity相关测试
+            R.id.btnActivityTest -> {
+                startActivity(Intent(this@ChajianActivity, ActivityTestActivity::class.java))
+            }
+            //service相关测试
+            R.id.btnServiceTest -> {
+                makeTextShort("service相关测试")
             }
             //显示弹窗
             R.id.btnShowDialog -> {

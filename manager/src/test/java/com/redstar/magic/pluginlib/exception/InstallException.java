@@ -1,1 +1,0 @@
-package com.redstar.magic.pluginlib.exception;/** * Created by chen.huarong on 2019-09-03. * plugin install exception */public class InstallException extends Exception {}
