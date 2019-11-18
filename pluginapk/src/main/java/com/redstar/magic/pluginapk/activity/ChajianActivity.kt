@@ -1,7 +1,10 @@
 package com.redstar.magic.pluginapk.activity
 
 import android.app.AlertDialog
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.view.View
 import com.redstar.magic.pluginapk.R
@@ -12,6 +15,13 @@ class ChajianActivity : MagicActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chajian)
+
+        registerReceiver(object : BroadcastReceiver() {
+            override fun onReceive(context: Context?, intent: Intent?) {
+                intent?.getStringExtra("data")?.let { makeTextShort(it) }
+            }
+
+        }, IntentFilter("broadcastTest"))
     }
 
     override fun onClick(v: View?) {
@@ -35,6 +45,12 @@ class ChajianActivity : MagicActivity(), View.OnClickListener {
             //fragment测试
             R.id.btnFragment -> {
                 startActivity(Intent(this@ChajianActivity, TestFragmentActivity::class.java))
+            }
+            //广播测试
+            R.id.btnSendBroadcast -> {
+                val intent = Intent("broadcastTest")
+                intent.putExtra("data", "i'm broadcast!")
+                sendBroadcast(intent)
             }
             else -> {
             }
