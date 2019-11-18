@@ -10,30 +10,36 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.NoTitleBar">
-        <activity android:name=".MainActivity">
+        <service
+            android:name=".service.ServiceTest"
+            android:enabled="true"
+            android:exported="true"></service>
+
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ChajianActivity" />
+        <activity android:name=".activity.ChajianActivity" />
         <activity
-            android:name=".TestFragmentActivity"
+            android:name=".activity.TestFragmentActivity"
             android:process=":remote" />
-        <activity android:name=".DatabindingActivity" />
-        <activity android:name=".PluginLifeCycleActivity" />
+        <activity android:name=".activity.DatabindingActivity" />
+        <activity android:name=".activity.PluginLifeCycleActivity" />
         <activity
-            android:name=".SingleTaskActivity"
+            android:name=".activity.SingleTaskActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".ActivityTestActivity" />
-
+        <activity android:name=".activity.ActivityTestActivity" />
         <activity
-            android:name=".SingleTopActivity"
+            android:name=".activity.SingleTopActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".SingleInstanceActivity"
+            android:name=".activity.SingleInstanceActivity"
             android:launchMode="singleInstance" />
+        <activity android:name=".activity.ServiceTestActivity" />
+        <activity android:name=".activity.ActivityForResultTestActivity" />
     </application>
 
 </manifest>

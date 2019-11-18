@@ -529,6 +529,10 @@
             android:name="com.redstar.magic.pluginlib.components.activity.PlaceHolderActivitys$ActivityProxySingleInstance29"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:launchMode="singleInstance" />
+
+        <service
+            android:name="com.redstar.magic.pluginlib.proxy.service.PluginProxyService"/>
+
     </application>
 
 </manifest>

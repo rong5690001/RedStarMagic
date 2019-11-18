@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ChajianActivity">
+    tools:context=".activity.ChajianActivity">
 
     <Button
         android:id="@+id/btnLaunchPluginActivity"
@@ -22,13 +22,19 @@
         android:id="@+id/btnStartSingleTask"
         style="@style/BtnStyle"
         android:onClick="onClick"
-        android:text="启动singleTaskActivity" />
+        android:text="startSingleTaskActivity" />
 
     <Button
         android:id="@+id/btnStartSingleInstance"
         style="@style/BtnStyle"
         android:onClick="onClick"
-        android:text="启动singleInstanceActivity" />
+        android:text="startSingleInstanceActivity" />
+
+    <Button
+        android:id="@+id/btnStartActivityForResult"
+        style="@style/BtnStyle"
+        android:onClick="onClick"
+        android:text="startActivityForResult" />
 
     <TextView
         android:layout_width="match_parent"

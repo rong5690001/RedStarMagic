@@ -29,21 +29,22 @@ import android.text.TextUtils;
 import android.util.Pair;
 
 import com.redstar.magic.pluginlib.IPluginComponentLauncher;
-import com.redstar.magic.pluginlib.proxy.activity.ProxyActivity;
 import com.redstar.magic.pluginlib.proxy.MixResources;
+import com.redstar.magic.pluginlib.proxy.activity.ProxyActivity;
 import com.redstar.magic.pluginlib.utils.IntentUtils;
 
 /**
  * 插件上下文：
  * 1、负责加载资源
  * 2、处理启动组件逻辑
+ *
  * @author chen.huarong
  */
 public class MagicContext extends PluginDirContextThemeWrapper {
 
-    protected IPluginComponentLauncher mPluginComponentLauncher;
+//    protected IPluginComponentLauncher mPluginComponentLauncher;
     protected ClassLoader mPluginClassLoader;
-    protected MagicApplication mShadowApplication;
+    protected MagicApplication mMagicApplication;
     protected Resources mPluginResources;
     protected Resources mMixResources;
     protected String mLibrarySearchPath;
@@ -61,9 +62,9 @@ public class MagicContext extends PluginDirContextThemeWrapper {
         mPluginClassLoader = classLoader;
     }
 
-    public void setPluginComponentLauncher(IPluginComponentLauncher pluginComponentLauncher) {
-        mPluginComponentLauncher = pluginComponentLauncher;
-    }
+//    public void setPluginComponentLauncher(IPluginComponentLauncher pluginComponentLauncher) {
+//        mPluginComponentLauncher = pluginComponentLauncher;
+//    }
 
     public void setPluginName(String pluginName) {
         mPluginName = pluginName;
@@ -71,7 +72,7 @@ public class MagicContext extends PluginDirContextThemeWrapper {
 
     @Override
     public Context getApplicationContext() {
-        return mShadowApplication;
+        return mMagicApplication;
     }
 
     @Override
@@ -115,7 +116,7 @@ public class MagicContext extends PluginDirContextThemeWrapper {
     public void startActivity(Intent intent) {
         final Intent pluginIntent = new Intent(intent);
         pluginIntent.setExtrasClassLoader(mPluginClassLoader);
-        final boolean success = IntentUtils.startActivity(this, pluginIntent);
+        final boolean success = IntentUtils.startActivity(getBaseContext(), pluginIntent);
         if (!success) {
             super.startActivity(intent);
         }
@@ -127,7 +128,7 @@ public class MagicContext extends PluginDirContextThemeWrapper {
 
     @Override
     public void unbindService(ServiceConnection conn) {
-        if (!mPluginComponentLauncher.unbindService(this, conn).first)
+        if (!IntentUtils.unbindService(getBaseContext(), conn).first)
             super.unbindService(conn);
     }
 
@@ -136,8 +137,7 @@ public class MagicContext extends PluginDirContextThemeWrapper {
         if (service.getComponent() == null) {
             return super.bindService(service, conn, flags);
         }
-        Pair<Boolean, Boolean> ret = mPluginComponentLauncher.bindService(this, service, conn,
-                flags);
+        Pair<Boolean, Boolean> ret = IntentUtils.bindService(getBaseContext(), service, conn, flags);
         if (!ret.first)
             return super.bindService(service, conn, flags);
         return ret.second;
@@ -148,7 +148,7 @@ public class MagicContext extends PluginDirContextThemeWrapper {
         if (name.getComponent() == null) {
             return super.stopService(name);
         }
-        Pair<Boolean, Boolean> ret = mPluginComponentLauncher.stopService(this, name);
+        Pair<Boolean, Boolean> ret = IntentUtils.stopService(getBaseContext(), name);
         if (!ret.first)
             return super.stopService(name);
         return ret.second;
@@ -159,7 +159,7 @@ public class MagicContext extends PluginDirContextThemeWrapper {
         if (service.getComponent() == null) {
             return super.startService(service);
         }
-        Pair<Boolean, ComponentName> ret = mPluginComponentLauncher.startService(this, service);
+        Pair<Boolean, ComponentName> ret = IntentUtils.startService(getBaseContext(), service);
         if (!ret.first)
             return super.startService(service);
         return ret.second;
@@ -171,10 +171,6 @@ public class MagicContext extends PluginDirContextThemeWrapper {
         applicationInfo.nativeLibraryDir = mLibrarySearchPath;
         applicationInfo.sourceDir = mDexPath;
         return applicationInfo;
-    }
-
-    public IPluginComponentLauncher getPendingIntentConverter() {
-        return mPluginComponentLauncher;
     }
 
     @Override

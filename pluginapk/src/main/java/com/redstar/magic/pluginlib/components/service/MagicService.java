@@ -1,0 +1,1 @@
+package com.redstar.magic.pluginlib.components.service;import android.app.Service;import android.content.Intent;import android.os.IBinder;import androidx.annotation.Nullable;/** * @author chen.huarong on 2019-11-14 */public class MagicService extends Service {    @Nullable    @Override    public IBinder onBind(Intent intent) {        return null;    }}

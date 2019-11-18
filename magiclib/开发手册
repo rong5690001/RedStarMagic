@@ -1,0 +1,1 @@
+1、宿主和插件间的交互全部通过communication-lib库实现。

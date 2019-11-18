@@ -1,9 +1,10 @@
-package com.redstar.magic.pluginapk
+package com.redstar.magic.pluginapk.activity
 
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import com.redstar.magic.pluginapk.R
 import com.redstar.magic.pluginlib.components.activity.MagicActivity
 
 class ChajianActivity : MagicActivity(), View.OnClickListener {
@@ -21,7 +22,7 @@ class ChajianActivity : MagicActivity(), View.OnClickListener {
             }
             //service相关测试
             R.id.btnServiceTest -> {
-                makeTextShort("service相关测试")
+                startActivity(Intent(this@ChajianActivity, ServiceTestActivity::class.java))
             }
             //显示弹窗
             R.id.btnShowDialog -> {

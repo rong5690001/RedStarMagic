@@ -1,8 +1,9 @@
-package com.redstar.magic.pluginapk
+package com.redstar.magic.pluginapk.activity
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import com.redstar.magic.pluginapk.R
 import com.redstar.magic.pluginlib.components.activity.MagicActivity
 
 class SingleInstanceActivity : MagicActivity() {
