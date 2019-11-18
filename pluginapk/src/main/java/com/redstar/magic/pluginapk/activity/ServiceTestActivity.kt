@@ -13,17 +13,17 @@ import com.redstar.magic.pluginapk.R
 import com.redstar.magic.pluginapk.service.ServiceTest
 import com.redstar.magic.pluginapk.service.ServiceTest.IServiceTest
 import com.redstar.magic.pluginlib.components.activity.MagicActivity
-import kotlinx.android.synthetic.main.activity_service_test.*
 
 /**
  * service测试
  */
 class ServiceTestActivity : MagicActivity() {
 
+    var tvLog = lazy { findViewById<TextView>(R.id.tvLog) } as TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_service_test)
-        val tvLog = findViewById<TextView>(R.id.tvLog)
         tvLog.movementMethod = ScrollingMovementMethod.getInstance()
         ServiceTest.sMessage.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
             override fun onPropertyChanged(sender: Observable, propertyId: Int) {
@@ -38,7 +38,7 @@ class ServiceTestActivity : MagicActivity() {
                 startService(Intent(this@ServiceTestActivity, ServiceTest::class.java))
             }
             R.id.btnBindService -> {
-                bindService(Intent(this@ServiceTestActivity, SingleTaskActivity::class.java), object : ServiceConnection {
+                bindService(Intent(this@ServiceTestActivity, ServiceTest::class.java), object : ServiceConnection {
                     override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
                         val serviceTest = service as IServiceTest
                         tvLog.append(serviceTest.test())
