@@ -9,6 +9,7 @@ import android.transition.TransitionManager;
 import android.view.View;
 
 import com.redstar.magic.pluginlib.MagicPlugin;
+import com.redstar.magic.pluginlib.tools.Logger;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
@@ -25,6 +26,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         MagicPlugin.install(this);
+        Logger.debug(true);
 
         //TODO 演示ConstrainsSet
         final ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout);
@@ -62,6 +64,8 @@ public class MainActivity extends Activity {
                 Intent intent = new Intent();
                 intent.setComponent(new ComponentName("com.redstar.magic.pluginapk"
                         , "com.redstar.magic.pluginapk.activity.ChajianActivity"));
+//                intent.setComponent(new ComponentName("com.redstar"
+//                        , "com.redstar.magic.pluginapk.activity.ChajianActivity"));
                 MagicPlugin.startActivity2(MainActivity.this, intent);
             }
         });
