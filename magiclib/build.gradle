@@ -20,6 +20,15 @@ android {
     }
 
     buildTypes {
+        debug{
+            debuggable true
+            // 不进行代码优化
+            minifyEnabled false
+            // 不进行zip对齐
+            zipAlignEnabled false
+            // 在调试包中禁用lint
+            project.gradle.startParameter.excludedTaskNames.add("lint")
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'

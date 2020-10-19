@@ -1,0 +1,76 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "c3c8caa326a40c87c56723f66d0191be",
+    "entities": [
+      {
+        "tableName": "Plugin",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `pluginName` TEXT, `pluginVersionCode` INTEGER NOT NULL, `pluginVersionName` TEXT, `minHostVersionCode` INTEGER NOT NULL, `minHostVersionName` TEXT, `pluginPreVersionCode` INTEGER NOT NULL, `pluginPreVersionName` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pluginName",
+            "columnName": "pluginName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "pluginVersionCode",
+            "columnName": "pluginVersionCode",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pluginVersionName",
+            "columnName": "pluginVersionName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "minHostVersionCode",
+            "columnName": "minHostVersionCode",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "minHostVersionName",
+            "columnName": "minHostVersionName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "pluginPreVersionCode",
+            "columnName": "pluginPreVersionCode",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pluginPreVersionName",
+            "columnName": "pluginPreVersionName",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c3c8caa326a40c87c56723f66d0191be')"
+    ]
+  }
+}

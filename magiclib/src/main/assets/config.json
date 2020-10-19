@@ -1,1 +1,6 @@
-{  "name": "PluginApk",  "versionCode": 1,  "versionName": "1.0",  "isInner": true}
+{
+  "name": "PluginApk",
+  "versionCode": 1,
+  "versionName": "1.0",
+  "isInner": true
+}

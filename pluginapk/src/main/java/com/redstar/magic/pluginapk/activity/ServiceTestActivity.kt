@@ -19,7 +19,7 @@ import com.redstar.magic.pluginlib.components.activity.MagicActivity
  */
 class ServiceTestActivity : MagicActivity() {
 
-        val tvLog: TextView by lazy { findViewById<TextView>(R.id.tvLog) }
+    val tvLog: TextView by lazy { findViewById<TextView>(R.id.tvLog) }
 //    var tvLog: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
